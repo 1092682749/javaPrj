@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qy.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.qy.model.Goods">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_img" jdbcType="VARCHAR" property="goods_img" />
+    <result column="g_sort" jdbcType="VARCHAR" property="g_sort" />
+    <result column="category_id" jdbcType="VARCHAR" property="category_id" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goods_name" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goods_price" />
+    <result column="goods_reduce" jdbcType="DECIMAL" property="goods_reduce" />
+    <result column="min_sale_weight" jdbcType="INTEGER" property="min_sale_weight" />
+    <result column="stock_num" jdbcType="INTEGER" property="stock_num" />
+    <result column="goods_unit" jdbcType="VARCHAR" property="goods_unit" />
+    <result column="g_add_time" jdbcType="VARCHAR" property="g_add_time" />
+    <result column="g_state" jdbcType="INTEGER" property="g_state" />
+    <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
+  </resultMap>
+
+
+  <select id="selectMMMM" resultType="map">
+   SELECT * FROM (SELECT * FROM category WHERE c_state = #{aaa} ORDER BY c_add_time) AS c JOIN (SELECT * FROM goods WHERE g_state = 1) AS g ON c.id = g.category_id
+  </select>
+</mapper>

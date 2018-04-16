@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qy.dao.TransportCostMapper">
+  <resultMap id="BaseResultMap" type="com.qy.model.TransportCost">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="transport_province" jdbcType="VARCHAR" property="transport_province" />
+    <result column="transport_city" jdbcType="VARCHAR" property="transport_city" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="add_time" jdbcType="VARCHAR" property="add_time" />
+  </resultMap>
+</mapper>

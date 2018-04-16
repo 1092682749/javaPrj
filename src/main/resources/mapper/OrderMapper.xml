@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qy.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.qy.model.Order">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="order_code" jdbcType="INTEGER" property="order_code" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="leave_message" jdbcType="VARCHAR" property="leave_message" />
+    <result column="invoice_title" jdbcType="VARCHAR" property="invoice_title" />
+    <result column="logistics_num" jdbcType="VARCHAR" property="logistics_num" />
+    <result column="logistics_name" jdbcType="VARCHAR" property="logistics_name" />
+    <result column="add_time" jdbcType="VARCHAR" property="add_time" />
+    <result column="payment_time" jdbcType="VARCHAR" property="payment_time" />
+    <result column="delivery_time" jdbcType="VARCHAR" property="delivery_time" />
+    <result column="confirm_receive_time" jdbcType="VARCHAR" property="confirm_receive_time" />
+    <result column="add_refund_time" jdbcType="VARCHAR" property="add_refund_time" />
+    <result column="close_time" jdbcType="VARCHAR" property="close_time" />
+    <result column="refund_time" jdbcType="VARCHAR" property="refund_time" />
+  </resultMap>
+</mapper>
