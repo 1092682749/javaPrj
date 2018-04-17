@@ -6,8 +6,10 @@ import com.qy.base.core.ResultGenerator;
 import com.qy.base.utils.DateUtil;
 import com.qy.base.utils.UploadFile;
 import com.qy.model.Banner;
+import com.qy.model.Goods;
 import com.qy.model.Member;
 import com.qy.service.BannerService;
+import com.qy.service.GoodsService;
 import com.qy.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,8 @@ import java.util.List;
 public class IndexController {
     @Autowired
     private BannerService bannerService;
+    @Resource
+    private GoodsService goodsService;
 
     @RequestMapping("/home")
     public ModelAndView home() {
@@ -33,5 +37,9 @@ public class IndexController {
         modelAndView.addObject("bannerList",bannerList);
         return modelAndView;
     }
-
+    @RequestMapping("/index")
+    public ModelAndView index(){
+        ModelAndView mav = new ModelAndView("index");
+        return mav;
+    }
 }

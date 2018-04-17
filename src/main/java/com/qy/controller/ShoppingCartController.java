@@ -6,6 +6,7 @@ import com.qy.service.ShoppingCartService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -44,10 +45,16 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/list")
-    public Result list(PageBean<ShoppingCart> page) {
-        PageHelper.startPage(page.getPageNum(),page.getSize());
-        List<ShoppingCart> list = shoppingCartService.findAll();
-        page.setList(list);
-        return ResultGenerator.successResult(page);
+    public ModelAndView list() {
+//        PageHelper.startPage(page.getPageNum(),page.getSize());
+//        List<ShoppingCart> list = shoppingCartService.findAll();
+//        page.setList(list);
+//        return ResultGenerator.successResult(page);
+        ModelAndView mav = new ModelAndView("cart");
+        return mav;
     }
+//    @RequestMapping("/content")
+//    public ModelAndView cart(){
+//
+//    }
 }

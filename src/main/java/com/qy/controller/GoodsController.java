@@ -65,4 +65,13 @@ public class GoodsController {
         mav.addObject("goods",goods);
         return mav;
     }
+    @RequestMapping("/shopAll")
+    public ModelAndView shopAll()
+    {
+        ModelAndView mav = new ModelAndView("shopAll");
+        List<Goods> goodsList = goodsService.findAll();
+        mav.addObject("goodsList",goodsList);
+        return mav;
+    }
+//    @RequestMapping
 }

@@ -1,0 +1,54 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+img{
+	position: relative;
+	width: 100%;
+	height: 432px;
+	/*margin: 50px 0;*/
+	left: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+div{
+	border:1px solid white;
+	position: relative;
+	width: 100%;
+	height: 624px;
+	background-color: white;
+	text-align: center;
+}
+.Title{
+	margin-top: 10px;
+	font-size: 25px;
+}
+.describe{
+	margin: 20px;
+}
+.shopName{
+	position: absolute;
+	display: block;
+	color:#38b16d;
+	/*color: red;*/
+	font-size: 25px;
+	/*text-align: left;*/
+}
+.price{
+	margin-top: 20px;
+	/*position: absolute;*/
+	text-align: left;
+	display: block;
+	font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+

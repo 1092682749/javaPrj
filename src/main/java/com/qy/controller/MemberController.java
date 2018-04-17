@@ -6,6 +6,7 @@ import com.qy.service.MemberService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
 public class MemberController {
     @Resource
     private MemberService memberService;
+//    @Resource
+//    private Member member;
 
     @PostMapping("/add")
     public Result add(@RequestBody Member member) {
@@ -49,5 +52,10 @@ public class MemberController {
         List<Member> list = memberService.findAll();
         page.setList(list);
         return ResultGenerator.successResult(page);
+    }
+    @RequestMapping("/person")
+    public ModelAndView person(){
+        ModelAndView mav = new ModelAndView("Pcenter");
+        return mav;
     }
 }

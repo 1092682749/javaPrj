@@ -1,22 +1,48 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Title</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../public/css/mxc.css"/>
 </head>
 <body>
-
-    <form action="/home" method="post">
-        <input placeholder="请输入" name="phone"/>
-        <input placeholder="请输入" name="header_img"/>
-        <input type="submit"/>
-    </form>
-
+<iframe src="../goods/shopAll" name="shop"></iframe>
+<!-- <iframe src="" name="cart"></iframe>
+<iframe src="" name="Pcenter"></iframe> -->
+<div class="foot">
+	<div class="fotc">
+		
+		<a class="footA" target="shop" href="../goods/shopAll" onclick="colorchange(this)">
+		<img class="icon" src="../public/img/form.png"/>
+		<span>商城</span></a>
+	</div>
+	<div class="fotc">
+		
+		<a class="footA" target="shop" href="../shopping/cart/list" onclick="colorchange(this)">
+		<img class="icon" src="../public/img/cart.png"/>
+		<span>购物车</span></a>
+	</div>
+	<div class="fotc">
+		
+		<a class="footA" target="shop" href="../member/person" onclick="colorchange(this)">
+		<img class="icon" src="../public/img/account.png "/>
+		<span>个人中心</span></a>
+	</div>
+</div>
 </body>
-</html>
+<script type="text/javascript">
 
-<script>
+	function colorchange( _this ) {
+		var footList = document.getElementsByClassName('footA');
+		for (var i = footList.length - 1; i >= 0; i--) {
+			footList[i].style.backgroundColor = "#f8f8f8";
+		}
+	
+		_this.style.backgroundColor="#38B078";
 
+		// console.log(_this);
+	}
 </script>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" type="text/css" href="../public/css/shop_ccs.css"/>
+	<title>全部品种</title>
+</head>
+<body>
+<div th:each="i:${goodsList}">
+	<p class="Title" th:text="${i.getCategory_id()}"></p>
+	<p class="describe">在此添加商品特点</p>
+	<a target="_top" th:href="'/goods/details?id='+${i.getId()}"><img th:src="${i.getGoods_img()}"/></a><br/>
+	<p class="shopName" th:text="${i.getGoods_name()}">在此添加全称</p><br/>
+	<p class="price" th:text="${i.getGoods_price()-i.getGoods_reduce()}">在此添加商品价格</p>
+	</div>
+</body>
+</html>
