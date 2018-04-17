@@ -206,6 +206,7 @@ a{
     position: absolute;
     right: 0;
     height: 80px;
+    font-size: 0.7rem;
 }
 .one-price{
     color: #ff6600;
@@ -271,6 +272,19 @@ a{
 }
 .buy-number{
     margin-right: 10px;
+}
+#left-info {
+    width: 100%;
+}
+.goodsImage{
+    object-fit: cover;
+    width: 100%;
+}
+span{
+    /*display: inline-block;*/
+}
+.add,.reduce,.enter{
+    cursor: pointer;
 }
 
 

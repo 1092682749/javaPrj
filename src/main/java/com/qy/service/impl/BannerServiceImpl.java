@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -19,4 +20,8 @@ public class BannerServiceImpl extends AbstractService<Banner> implements Banner
     @Resource
     private BannerMapper bannerMapper;
 
+    @Override
+    public List<Banner> findBannersById(Integer id) {
+        return bannerMapper.findBannersById(id);
+    }
 }

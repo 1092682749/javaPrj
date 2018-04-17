@@ -1,7 +1,9 @@
 package com.qy.controller;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
+import com.qy.model.Banner;
 import com.qy.model.Goods;
+import com.qy.service.BannerService;
 import com.qy.service.GoodsService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
@@ -19,6 +21,8 @@ import java.util.List;
 public class GoodsController {
     @Resource
     private GoodsService goodsService;
+    @Resource
+    private BannerService bannerService;
 
     @PostMapping("/add")
     public Result add(@RequestBody Goods goods) {
@@ -52,9 +56,13 @@ public class GoodsController {
         return ResultGenerator.successResult(page);
     }
     @RequestMapping("/details")
-    public ModelAndView details()
+    public ModelAndView details(Integer id)
     {
         ModelAndView mav = new ModelAndView("shopDetails");
+        List<Banner> banners = bannerService.findBannersById(id);
+        Goods goods = goodsService.findGoodsById(id);
+        mav.addObject("banners",banners);
+        mav.addObject("goods",goods);
         return mav;
     }
 }

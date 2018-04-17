@@ -13,4 +13,7 @@
     <result column="add_time" jdbcType="VARCHAR" property="add_time" />
     <result column="state" jdbcType="INTEGER" property="state" />
   </resultMap>
+  <select id="findBannersById" parameterType="int" resultType="com.qy.model.Banner">
+    SELECT *FROM banner WHERE goods_id = #{id}
+  </select>
 </mapper>

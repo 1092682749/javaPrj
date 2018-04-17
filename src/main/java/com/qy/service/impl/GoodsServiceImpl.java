@@ -19,4 +19,8 @@ public class GoodsServiceImpl extends AbstractService<Goods> implements GoodsSer
     @Resource
     private GoodsMapper goodsMapper;
 
+    @Override
+    public Goods findGoodsById(Integer id) {
+        return goodsMapper.findGoodsById(id);
+    }
 }

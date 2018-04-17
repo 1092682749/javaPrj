@@ -1,7 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="css/shopDetails.css"/>
+    <link rel="stylesheet" href="../public/css/shopDetails.css"/>
     <link href="https://cdn.bootcss.com/Swiper/4.2.2/css/swiper.min.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1"/>
     <meta charset="UTF-8"/>
@@ -9,51 +11,56 @@
 </head>
 <body>
 <div class="topBox">
-<!--轮播部分-->
+    <!--轮播部分-->
     <div class="swiper-container">
         <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="http://img4.dwstatic.com/wuxia/1804/387236142960/1523280965596.jpg"/>
-                </div>
-                <div class="swiper-slide">
-                    <img src="http://img.dwstatic.com/wuxia/1712/377467962781/377468332966.jpg"/>
-                </div>
-                <div class="swiper-slide">
-                    <img src="http://img5.dwstatic.com/wuxia/1712/376311553323/1512356623619.jpg"/>
-                </div>
-                <div class="swiper-slide">
-                <img src="http://img.dwstatic.com/wuxia/1711/375477783746/375477932026.jpg"/>
-                </div>
-                <div class="swiper-slide">
-                    <img src="http://img5.dwstatic.com/wuxia/1712/376939201882/376940048199.jpg"/>
-                </div>
+            <div class="swiper-slide" th:each="i:${banners}">
+                <img th:src="${i.getCover_img()}"/>
+            </div>
+            <!--<div class="swiper-slide">-->
+                <!--<img src="http://img.dwstatic.com/wuxia/1712/377467962781/377468332966.jpg"/>-->
+            <!--</div>-->
+            <!--<div class="swiper-slide">-->
+                <!--<img src="http://img5.dwstatic.com/wuxia/1712/376311553323/1512356623619.jpg"/>-->
+            <!--</div>-->
+            <!--<div class="swiper-slide">-->
+                <!--<img src="http://img.dwstatic.com/wuxia/1711/375477783746/375477932026.jpg"/>-->
+            <!--</div>-->
+            <!--<div class="swiper-slide">-->
+                <!--<img src="http://img5.dwstatic.com/wuxia/1712/376939201882/376940048199.jpg"/>-->
+            <!--</div>-->
         </div>
-    </div>
-    <!-- 如果需要分页器 -->
-    <div class="swiper-pagination"></div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
 
-    <!-- 如果需要导航按钮 -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
 
-    <!-- 如果需要滚动条 -->
-    <!--<div class="swiper-scrollbar"></div>-->
+        <!-- 如果需要滚动条 -->
+        <!--<div class="swiper-scrollbar"></div>-->
     </div>
 
     <div class="goods-detail-wrapper">
-        <div class="goods-title">优质苜蓿颗粒</div>
-        <span class="goods-price">￥1800.00</span>
-        <span class="sales-number">销量0</span>
+        <div class="goods-title" th:text="${goods.getGoods_name()}"></div>
+        <span class="goods-price">￥
+            <span th:text="${goods.getGoods_price()-goods.getGoods_reduce()}"></span>/
+            <span th:text="${goods.getGoods_unit()}"></span>
+        </span>
+        <span class="sales-number">销量(0)
+            <!--<span th:text="${goods.getS}"></span>-->
+        </span>
     </div>
 
     <!--详情和评价-->
     <div class="background-gray">
         <div class="slider-line"></div>
         <div class="out-goods-details">
-                <div class="goods-info">商品详情</div>
-                <div class="goods-info">评价（0）</div>
-            <div id="left-info" class="text-content">1111qeqweqeq123
-                qweqewq<br/>eq<br/>we<br/>qeqeqeqeqeqeqeqeqeq<br/><br/><br/><br/><br/>
+            <div class="goods-info">商品详情</div>
+            <div class="goods-info">评价（0）</div>
+            <div id="left-info" class="text-content">
+                <p th:text="${goods.getDetail()}"></p>
+                <img class="goodsImage" th:src="${goods.getGoods_img()}"/>
             </div>
             <div id="right-info" class="text-content">2222</div>
         </div>
@@ -62,18 +69,18 @@
 <div class="foot">
     <div class="foot-lift">
         <span class="foot-left-left">
-            <img src="img/shoping.png"/>
+            <img src="../public/img/shoping.png"/>
             <p>商城</p>
         </span>
         <span class="foot-left-right">
 
-              <img src="img/shopcart.png"/>
+              <img src="../public/img/shopcart.png"/>
             <p>购物车</p>
 
         </span>
     </div>
     <div class="foot-right">
-        <span class="foot-right-left"/>
+        <span class="foot-right-left">
             <p>加入购物车</p>
         </span>
         <span class="foot-right-right">
@@ -82,26 +89,34 @@
     </div>
 </div>
 <div class="buy-new">
-        <div class="img-out">
-            <img class="frontPage" src="http://img4.dwstatic.com/wuxia/1804/387236142960/1523280965596.jpg"/>
-        </div>
-        <div class="right-info">
-            <span class="one-price">￥18.00/t</span>
-            <span class="old-one-price">
+    <div class="img-out">
+        <img class="frontPage" th:src="${goods.getGoods_img()}"/>
+    </div>
+    <div class="right-info">
+        <span class="one-price">
+            ￥<span th:text="${goods.getGoods_price()}"></span>
+            ／<span th:text="${goods.getGoods_unit()}"></span>
+        </span>
+        <span class="old-one-price">
                 <span>
-                    <img class="line-image" src="img/u1558.png"/>原价
-                    </span>
-                <span>￥18.00/t</span></span>
-            <span class="store">库存200吨</span>
+                    <img class="line-image" src="../public/img/u1558.png"/>原价￥
+                </span>
+                <span th:text="${goods.getGoods_price()-goods.getGoods_reduce()}"></span>
+               /<span th:text="${goods.getGoods_unit()}"/>
+        </span>
+        <span class="store">
+            <span th:text="${goods.getStock_num()}"/>
+           /<span th:text="${goods.getGoods_unit()}"/>
+        </span>
 
-            <img id="closeImg" src="img/u496.png"/>
-        </div>
+        <img id="closeImg" src="../public/img/u496.png"/>
+    </div>
     <div class="mid">
-    <span class="buy-number">购买数量</span>
-    <span class="reduce">－</span>
-    <span class="int-number">1</span>
-    <span class="add">＋</span>
-    <span>t/kg/g</span>
+        <span class="buy-number">购买数量</span>
+        <span class="reduce">－</span>
+        <span class="int-number">1</span>
+        <span class="add">＋</span>
+        <span th:text="${goods.getGoods_unit()}"></span>
     </div>
     <div class="enter"><p>确定</p></div>
 </div>
@@ -109,7 +124,7 @@
 </body>
 </html>
 <script src="https://cdn.bootcss.com/Swiper/4.2.2/js/swiper.min.js"></script>
-<script src="js/shopDetails.js"></script>
+<script src="../public/js/shopDetails.js"></script>
 <script>
     var mySwiper = new Swiper ('.swiper-container', {
         // direction: 'vertical',
