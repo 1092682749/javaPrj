@@ -1,6 +1,7 @@
 package com.qy.controller;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
+import com.qy.model.Member;
 import com.qy.model.ShoppingCart;
 import com.qy.service.ShoppingCartService;
 import com.qy.base.core.PageBean;
@@ -57,4 +58,9 @@ public class ShoppingCartController {
 //    public ModelAndView cart(){
 //
 //    }
+    @PostMapping("/number")
+    public void number(@RequestBody ShoppingCart shoppingCart){
+//        shoppingCart.setS_member_id(member.getId());
+        System.out.println("################"+shoppingCart.toString());
+    }
 }

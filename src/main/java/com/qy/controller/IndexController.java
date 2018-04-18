@@ -23,11 +23,14 @@ import java.util.List;
 */
 @RestController
 @RequestMapping("/")
+@SessionAttributes(names = {"member"},types = {Member.class})
 public class IndexController {
     @Autowired
     private BannerService bannerService;
     @Resource
     private GoodsService goodsService;
+    @Resource
+    private MemberService memberService;
 
     @RequestMapping("/home")
     public ModelAndView home() {
@@ -38,8 +41,14 @@ public class IndexController {
         return modelAndView;
     }
     @RequestMapping("/index")
-    public ModelAndView index(){
+    public ModelAndView index(Integer id){
+        Member member = memberService.findMemberById(id);
+        if(member == null)
+        {
+            //插入用户
+        }
         ModelAndView mav = new ModelAndView("index");
+        mav.addObject("member",member);
         return mav;
     }
 }

@@ -17,18 +17,6 @@
             <div class="swiper-slide" th:each="i:${banners}">
                 <img th:src="${i.getCover_img()}"/>
             </div>
-            <!--<div class="swiper-slide">-->
-                <!--<img src="http://img.dwstatic.com/wuxia/1712/377467962781/377468332966.jpg"/>-->
-            <!--</div>-->
-            <!--<div class="swiper-slide">-->
-                <!--<img src="http://img5.dwstatic.com/wuxia/1712/376311553323/1512356623619.jpg"/>-->
-            <!--</div>-->
-            <!--<div class="swiper-slide">-->
-                <!--<img src="http://img.dwstatic.com/wuxia/1711/375477783746/375477932026.jpg"/>-->
-            <!--</div>-->
-            <!--<div class="swiper-slide">-->
-                <!--<img src="http://img5.dwstatic.com/wuxia/1712/376939201882/376940048199.jpg"/>-->
-            <!--</div>-->
         </div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
@@ -40,7 +28,8 @@
         <!-- 如果需要滚动条 -->
         <!--<div class="swiper-scrollbar"></div>-->
     </div>
-
+<input id="goodsId" type="hidden" th:value="${goods.getId()}"/>
+<input id="memberID" type="hidden" th:value="${#httpSession.getAttribute('member').getId()}"/>
     <div class="goods-detail-wrapper">
         <div class="goods-title" th:text="${goods.getGoods_name()}"></div>
         <span class="goods-price">￥
@@ -79,7 +68,7 @@
             <p>商城</p>
         </span>
         <span class="foot-left-right">
-
+               <div class="tipNumber"></div>
               <img src="../public/img/shopcart.png"/>
             <p>购物车</p>
 
@@ -114,7 +103,6 @@
             <span th:text="${goods.getStock_num()}"/>
            /<span th:text="${goods.getGoods_unit()}"/>
         </span>
-
         <img id="closeImg" src="../public/img/u496.png"/>
     </div>
     <div class="mid">
@@ -129,6 +117,7 @@
 
 </body>
 </html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/Swiper/4.2.2/js/swiper.min.js"></script>
 <script src="../public/js/shopDetails.js"></script>
 <script>

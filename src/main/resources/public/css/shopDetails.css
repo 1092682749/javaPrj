@@ -133,6 +133,9 @@ a{
     /*flex: 1;*/
     /*line-height: 65px;*/
 }
+.foot-left-right{
+    position: relative;
+}
 .foot-right{
     position: absolute;
     top: 0;
@@ -310,7 +313,16 @@ span{
     position: absolute;
     top: 30px;
 }
-
+.tipNumber{
+    width: 17px;
+    height: 17px;
+    background-color: red;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    right: 27%;
+}
 
 
 

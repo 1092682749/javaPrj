@@ -14,4 +14,7 @@
   <select id="findMemberById" parameterType="int" resultType="com.qy.model.Member">
     SELECT *FROM member WHERE id = #{id}
   </select>
+  <!--<select id="findMemberById" parameterType="int" resultType="com.qy.model.Member">-->
+    <!--SELECT *FROM member WHERE id = #{id}-->
+  <!--</select>-->
 </mapper>

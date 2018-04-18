@@ -7,13 +7,16 @@
 	<title>全部品种</title>
 </head>
 <body>
-<div th:each="i:${goodsList}">
+<div class="goods" th:each="i:${goodsList}">
 	<p class="Title" th:text="${categoryMap.get(i.getCategory_id()).getC_name()}"></p>
 	<p class="describe" th:text="${categoryMap.get(i.getCategory_id()).getC_descripe()}"></p>
 	<a target="_top" th:href="'/goods/details?id='+${i.getId()}"><img th:src="${i.getGoods_img()}"/></a><br/>
 	<p class="shopName" th:text="${i.getGoods_name()}"></p><br/>
-	￥<p class="price" th:text="${i.getGoods_price()-i.getGoods_reduce()}"></p>
-	/<p th:text="${i.getGoods_unit()}"></p>
+	<div class="priceBox">
+		￥<span class="price" th:text="${i.getGoods_price()-i.getGoods_reduce()}"></span>
+		/<span th:text="${i.getGoods_unit()}"></span>
 	</div>
+</div>
+<p align="center">没有更多了......</p>
 </body>
 </html>

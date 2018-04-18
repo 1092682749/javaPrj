@@ -29,6 +29,21 @@ public class ShoppingCart {
     private Integer goods_num;
 
     /**
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "id=" + id +
+                ", s_add_time='" + s_add_time + '\'' +
+                ", s_member_id=" + s_member_id +
+                ", goods_id=" + goods_id +
+                ", goods_num=" + goods_num +
+                '}';
+    }
+
+    /**
      * @return id
      */
     public Integer getId() {
