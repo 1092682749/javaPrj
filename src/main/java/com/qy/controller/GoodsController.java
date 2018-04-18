@@ -2,16 +2,20 @@ package com.qy.controller;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
 import com.qy.model.Banner;
+import com.qy.model.Category;
 import com.qy.model.Goods;
 import com.qy.service.BannerService;
+import com.qy.service.CategoryService;
 import com.qy.service.GoodsService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
 * Created by zaq on 2018/04/14.
@@ -23,6 +27,8 @@ public class GoodsController {
     private GoodsService goodsService;
     @Resource
     private BannerService bannerService;
+    @Resource
+    private CategoryService categoryService;
 
     @PostMapping("/add")
     public Result add(@RequestBody Goods goods) {
@@ -69,8 +75,15 @@ public class GoodsController {
     public ModelAndView shopAll()
     {
         ModelAndView mav = new ModelAndView("shopAll");
+        Map<Integer,Category> categoryMap = categoryService.categoryMap();
         List<Goods> goodsList = goodsService.findAll();
+        mav.addObject("categoryMap",categoryMap);
         mav.addObject("goodsList",goodsList);
+        for (Goods g : goodsList) {
+            System.out.println(g.getCategory_id());
+            System.out.println(categoryMap.get(g.getCategory_id()).getC_name());
+        }
+
         return mav;
     }
 //    @RequestMapping

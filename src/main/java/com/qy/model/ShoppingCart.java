@@ -16,12 +16,12 @@ public class ShoppingCart {
     /**
      * 用户id
      */
-    private String s_member_id;
+    private Integer s_member_id;
 
     /**
      * 商品id
      */
-    private String goods_id;
+    private Integer goods_id;
 
     /**
      * 商品数量
@@ -65,7 +65,7 @@ public class ShoppingCart {
      *
      * @return s_member_id - 用户id
      */
-    public String getS_member_id() {
+    public Integer getS_member_id() {
         return s_member_id;
     }
 
@@ -74,7 +74,7 @@ public class ShoppingCart {
      *
      * @param s_member_id 用户id
      */
-    public void setS_member_id(String s_member_id) {
+    public void setS_member_id(Integer s_member_id) {
         this.s_member_id = s_member_id;
     }
 
@@ -83,7 +83,7 @@ public class ShoppingCart {
      *
      * @return goods_id - 商品id
      */
-    public String getGoods_id() {
+    public Integer getGoods_id() {
         return goods_id;
     }
 
@@ -92,7 +92,7 @@ public class ShoppingCart {
      *
      * @param goods_id 商品id
      */
-    public void setGoods_id(String goods_id) {
+    public void setGoods_id(Integer goods_id) {
         this.goods_id = goods_id;
     }
 

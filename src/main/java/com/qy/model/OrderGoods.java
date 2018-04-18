@@ -12,7 +12,7 @@ public class OrderGoods {
     /**
      * 订单编号
      */
-    private String order_id;
+    private Integer order_id;
 
     /**
      * 商品封面
@@ -68,7 +68,7 @@ public class OrderGoods {
      *
      * @return order_id - 订单编号
      */
-    public String getOrder_id() {
+    public Integer getOrder_id() {
         return order_id;
     }
 
@@ -77,7 +77,7 @@ public class OrderGoods {
      *
      * @param order_id 订单编号
      */
-    public void setOrder_id(String order_id) {
+    public void setOrder_id(Integer order_id) {
         this.order_id = order_id;
     }
 

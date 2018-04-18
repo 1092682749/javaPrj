@@ -10,12 +10,12 @@ public class Evaluate {
     /**
      * 商品id
      */
-    private String goods_id;
+    private Integer goods_id;
 
     /**
      * 客户Id
      */
-    private String member_id;
+    private Integer member_id;
 
     /**
      * 评论内容
@@ -46,7 +46,7 @@ public class Evaluate {
      *
      * @return goods_id - 商品id
      */
-    public String getGoods_id() {
+    public Integer getGoods_id() {
         return goods_id;
     }
 
@@ -55,7 +55,7 @@ public class Evaluate {
      *
      * @param goods_id 商品id
      */
-    public void setGoods_id(String goods_id) {
+    public void setGoods_id(Integer goods_id) {
         this.goods_id = goods_id;
     }
 
@@ -64,7 +64,7 @@ public class Evaluate {
      *
      * @return member_id - 客户Id
      */
-    public String getMember_id() {
+    public Integer getMember_id() {
         return member_id;
     }
 
@@ -73,7 +73,7 @@ public class Evaluate {
      *
      * @param member_id 客户Id
      */
-    public void setMember_id(String member_id) {
+    public void setMember_id(Integer member_id) {
         this.member_id = member_id;
     }
 

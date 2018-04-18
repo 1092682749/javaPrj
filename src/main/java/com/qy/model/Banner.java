@@ -23,7 +23,7 @@ public class Banner {
     /**
      * 与商品表关联
      */
-    private String goods_id;
+    private Integer goods_id;
 
     /**
      * 排序
@@ -99,7 +99,7 @@ public class Banner {
      *
      * @return goods_id - 与商品表关联
      */
-    public String getGoods_id() {
+    public Integer getGoods_id() {
         return goods_id;
     }
 
@@ -108,7 +108,7 @@ public class Banner {
      *
      * @param goods_id 与商品表关联
      */
-    public void setGoods_id(String goods_id) {
+    public void setGoods_id(Integer goods_id) {
         this.goods_id = goods_id;
     }
 

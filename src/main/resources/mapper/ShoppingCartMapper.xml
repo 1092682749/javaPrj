@@ -7,8 +7,8 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="s_add_time" jdbcType="VARCHAR" property="s_add_time" />
-    <result column="s_member_id" jdbcType="VARCHAR" property="s_member_id" />
-    <result column="goods_id" jdbcType="VARCHAR" property="goods_id" />
+    <result column="s_member_id" jdbcType="INTEGER" property="s_member_id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goods_id" />
     <result column="goods_num" jdbcType="INTEGER" property="goods_num" />
   </resultMap>
 </mapper>

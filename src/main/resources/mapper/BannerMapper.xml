@@ -8,7 +8,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="cover_img" jdbcType="VARCHAR" property="cover_img" />
     <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="goods_id" jdbcType="VARCHAR" property="goods_id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goods_id" />
     <result column="sort" jdbcType="VARCHAR" property="sort" />
     <result column="add_time" jdbcType="VARCHAR" property="add_time" />
     <result column="state" jdbcType="INTEGER" property="state" />

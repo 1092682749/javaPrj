@@ -12,4 +12,7 @@
     <result column="c_state" jdbcType="INTEGER" property="c_state" />
     <result column="c_add_time" jdbcType="VARCHAR" property="c_add_time" />
   </resultMap>
+  <select id="findAllCategory" resultType="com.qy.model.Category">
+    SELECT *FROM category
+  </select>
 </mapper>

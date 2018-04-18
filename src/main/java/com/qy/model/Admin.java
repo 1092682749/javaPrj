@@ -20,7 +20,7 @@ public class Admin {
     /**
      * 角色ID
      */
-    private String role_id;
+    private Integer role_id;
 
     /**
      * 密码
@@ -87,7 +87,7 @@ public class Admin {
      *
      * @return role_id - 角色ID
      */
-    public String getRole_id() {
+    public Integer getRole_id() {
         return role_id;
     }
 
@@ -96,7 +96,7 @@ public class Admin {
      *
      * @param role_id 角色ID
      */
-    public void setRole_id(String role_id) {
+    public void setRole_id(Integer role_id) {
         this.role_id = role_id;
     }
 

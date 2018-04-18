@@ -6,10 +6,10 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="member_id" jdbcType="VARCHAR" property="member_id" />
+    <result column="member_id" jdbcType="INTEGER" property="member_id" />
     <result column="t_amount" jdbcType="DECIMAL" property="t_amount" />
     <result column="add_time" jdbcType="VARCHAR" property="add_time" />
     <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="order_id" jdbcType="VARCHAR" property="order_id" />
+    <result column="order_id" jdbcType="INTEGER" property="order_id" />
   </resultMap>
 </mapper>

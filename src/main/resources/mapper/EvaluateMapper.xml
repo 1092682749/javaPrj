@@ -6,8 +6,8 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="goods_id" jdbcType="VARCHAR" property="goods_id" />
-    <result column="member_id" jdbcType="VARCHAR" property="member_id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goods_id" />
+    <result column="member_id" jdbcType="INTEGER" property="member_id" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="add_time" jdbcType="VARCHAR" property="add_time" />
   </resultMap>

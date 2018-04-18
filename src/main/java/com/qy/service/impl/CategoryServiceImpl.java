@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -19,4 +22,15 @@ public class CategoryServiceImpl extends AbstractService<Category> implements Ca
     @Resource
     private CategoryMapper categoryMapper;
 
+    @Override
+    public Map<Integer, Category> categoryMap() {
+        List<Category> categoryList = categoryMapper.findAllCategory();
+        Map<Integer,Category> categoryMap = new HashMap<>();
+        for (Category category : categoryList)
+        {
+            Integer id = category.getId();
+            categoryMap.put(id,category);
+        }
+        return categoryMap;
+    }
 }

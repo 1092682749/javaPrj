@@ -10,7 +10,7 @@ public class Address {
     /**
      * 用户id
      */
-    private String member_id;
+    private Integer member_id;
 
     /**
      * 姓名
@@ -66,7 +66,7 @@ public class Address {
      *
      * @return member_id - 用户id
      */
-    public String getMember_id() {
+    public Integer getMember_id() {
         return member_id;
     }
 
@@ -75,7 +75,7 @@ public class Address {
      *
      * @param member_id 用户id
      */
-    public void setMember_id(String member_id) {
+    public void setMember_id(Integer member_id) {
         this.member_id = member_id;
     }
 

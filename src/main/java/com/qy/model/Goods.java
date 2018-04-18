@@ -21,7 +21,7 @@ public class Goods {
     /**
      * 商品所属品类ID
      */
-    private String category_id;
+    private Integer category_id;
 
     /**
      * 商品名称
@@ -123,7 +123,7 @@ public class Goods {
      *
      * @return category_id - 商品所属品类ID
      */
-    public String getCategory_id() {
+    public Integer getCategory_id() {
         return category_id;
     }
 
@@ -132,7 +132,7 @@ public class Goods {
      *
      * @param category_id 商品所属品类ID
      */
-    public void setCategory_id(String category_id) {
+    public void setCategory_id(Integer category_id) {
         this.category_id = category_id;
     }
 

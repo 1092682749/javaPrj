@@ -8,7 +8,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="goods_img" jdbcType="VARCHAR" property="goods_img" />
     <result column="g_sort" jdbcType="VARCHAR" property="g_sort" />
-    <result column="category_id" jdbcType="VARCHAR" property="category_id" />
+    <result column="category_id" jdbcType="INTEGER" property="category_id" />
     <result column="goods_name" jdbcType="VARCHAR" property="goods_name" />
     <result column="goods_price" jdbcType="DECIMAL" property="goods_price" />
     <result column="goods_reduce" jdbcType="DECIMAL" property="goods_reduce" />

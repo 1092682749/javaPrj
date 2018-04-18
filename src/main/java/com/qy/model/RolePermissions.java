@@ -11,12 +11,12 @@ public class RolePermissions {
     /**
      * 用户id
      */
-    private String role_id;
+    private Integer role_id;
 
     /**
      * 角色id
      */
-    private String permissions_id;
+    private Integer permissions_id;
 
     /**
      * @return id
@@ -37,7 +37,7 @@ public class RolePermissions {
      *
      * @return role_id - 用户id
      */
-    public String getRole_id() {
+    public Integer getRole_id() {
         return role_id;
     }
 
@@ -46,7 +46,7 @@ public class RolePermissions {
      *
      * @param role_id 用户id
      */
-    public void setRole_id(String role_id) {
+    public void setRole_id(Integer role_id) {
         this.role_id = role_id;
     }
 
@@ -55,7 +55,7 @@ public class RolePermissions {
      *
      * @return permissions_id - 角色id
      */
-    public String getPermissions_id() {
+    public Integer getPermissions_id() {
         return permissions_id;
     }
 
@@ -64,7 +64,7 @@ public class RolePermissions {
      *
      * @param permissions_id 角色id
      */
-    public void setPermissions_id(String permissions_id) {
+    public void setPermissions_id(Integer permissions_id) {
         this.permissions_id = permissions_id;
     }
 }
