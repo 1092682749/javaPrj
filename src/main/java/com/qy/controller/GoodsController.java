@@ -1,12 +1,8 @@
 package com.qy.controller;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
-import com.qy.model.Banner;
-import com.qy.model.Category;
-import com.qy.model.Goods;
-import com.qy.service.BannerService;
-import com.qy.service.CategoryService;
-import com.qy.service.GoodsService;
+import com.qy.model.*;
+import com.qy.service.*;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
 import org.apache.poi.ss.formula.functions.T;
@@ -14,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +26,10 @@ public class GoodsController {
     private BannerService bannerService;
     @Resource
     private CategoryService categoryService;
+    @Resource
+    private EvaluateService evaluateService;
+    @Resource
+    private MemberService memberService;
 
     @PostMapping("/add")
     public Result add(@RequestBody Goods goods) {
@@ -65,8 +66,10 @@ public class GoodsController {
     public ModelAndView details(Integer id)
     {
         ModelAndView mav = new ModelAndView("shopDetails");
+        Map<Evaluate,Member> evaluateMemberMap = evaluateService.evaluateMemberMap(id);
         List<Banner> banners = bannerService.findBannersById(id);
         Goods goods = goodsService.findGoodsById(id);
+        mav.addObject("evaluateMemberMap",evaluateMemberMap);
         mav.addObject("banners",banners);
         mav.addObject("goods",goods);
         return mav;

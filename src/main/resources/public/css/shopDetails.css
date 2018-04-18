@@ -286,6 +286,32 @@ span{
 .add,.reduce,.enter{
     cursor: pointer;
 }
+.evaluate{
+    background-color: gray;
+    width: 100%;
+    position: relative;
+}
+.head-image{
+    border-radius: 50%;
+    width: 13%;
+    object-fit: cover;
+    position: absolute;
+    margin-top: 10px;
+    left: 10%;
+}
+.member-name{
+    position: absolute;
+    left: 25%;
+    top: 5px;
+}
+.evaluate-context{
+    width: 75%;
+    right: 0;
+    position: absolute;
+    top: 30px;
+}
+
+
 
 
 

@@ -11,4 +11,7 @@
     <result column="add_time" jdbcType="VARCHAR" property="add_time" />
     <result column="open_id" jdbcType="VARCHAR" property="open_id" />
   </resultMap>
+  <select id="findMemberById" parameterType="int" resultType="com.qy.model.Member">
+    SELECT *FROM member WHERE id = #{id}
+  </select>
 </mapper>

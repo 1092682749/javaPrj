@@ -19,4 +19,8 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
     @Resource
     private MemberMapper memberMapper;
 
+    @Override
+    public Member findMemberById(Integer id) {
+        return memberMapper.findMemberById(id);
+    }
 }

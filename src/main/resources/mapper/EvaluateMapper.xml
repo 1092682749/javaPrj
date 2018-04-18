@@ -11,4 +11,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="add_time" jdbcType="VARCHAR" property="add_time" />
   </resultMap>
+  <select id="findEvaluateByGoodsId" parameterType="int" resultType="com.qy.model.Evaluate">
+    SELECT *FROM evaluate WHERE goods_id = #{id}
+  </select>
 </mapper>

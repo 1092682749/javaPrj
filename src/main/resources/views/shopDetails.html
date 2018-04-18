@@ -62,7 +62,13 @@
                 <p th:text="${goods.getDetail()}"></p>
                 <img class="goodsImage" th:src="${goods.getGoods_img()}"/>
             </div>
-            <div id="right-info" class="text-content">2222</div>
+            <div id="right-info" class="text-content">
+                <div class="evaluate" th:each="i:${evaluateMemberMap}">
+                    <img th:src="${i.getValue().getHeader_img()}" class="head-image"/>
+                    <span class="member-name" th:text="${i.getValue().getOpen_id()}">asdasda</span>
+                    <span class="evaluate-context" th:text="${i.getKey().getContent()}">123131</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
