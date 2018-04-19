@@ -15,4 +15,7 @@
     <result column="add_time" jdbcType="VARCHAR" property="add_time" />
     <result column="is_default" jdbcType="INTEGER" property="is_default" />
   </resultMap>
+  <select id="findDefaultAddress" resultType="com.qy.model.Address" parameterType="int">
+    SELECT *FROM address WHERE member_id = #{id} AND is_default = 1
+  </select>
 </mapper>

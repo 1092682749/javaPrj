@@ -4,4 +4,5 @@ import com.qy.base.core.Mapper;
 import com.qy.model.Address;
 
 public interface AddressMapper extends Mapper<Address> {
+    public Address findDefaultAddress(Integer id);
 }

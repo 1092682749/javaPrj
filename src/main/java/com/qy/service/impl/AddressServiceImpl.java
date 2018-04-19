@@ -19,4 +19,8 @@ public class AddressServiceImpl extends AbstractService<Address> implements Addr
     @Resource
     private AddressMapper addressMapper;
 
+    @Override
+    public Address findDefaultAddress(Integer id) {
+        return addressMapper.findDefaultAddress(id);
+    }
 }

@@ -16,48 +16,51 @@ var goodsIdInput = document.getElementById('goodsId');
 var memberIdInput = document.getElementById('memberID');
 var memberId = memberIdInput.getAttribute('value');
 var goodsId = goodsIdInput.getAttribute('value');
+var buyForm = document.getElementById('buyForm');
+var goodsNumberInput = document.getElementById('goods_num');
+var sAddTimeInput = document.getElementById('s_add_time');
 var date = Date();
 var goodsNumber = parseInt(intNumber.innerHTML);
+var flag = false;
 var shoppingCartObject = {
     s_add_time:date,
     goods_id:parseInt(goodsId),
     goods_num:goodsNumber,
     s_member_id:memberId
 };
+
 var shoppingCart = JSON.stringify(shoppingCartObject);
 
+goodsNumberInput.value = goodsNumber;
+sAddTimeInput.value = date;
 
 console.log(enter);
 // console.log(parseInt(intNumber));
 console.log(memberId);
 
 enter.onclick = function (){
-    console.log(111111);
-    $.ajax({
-        url:'/shopping/cart/number',
-        type:'post',
-        cache:false,
-        data:shoppingCart,
-        contentType:'application/json',
-        dataType:'json'
-    });
-    // var xmlHttpRequest;
-    // if (window.XMLHttpRequest)
-    // {
-    //     xmlHttpRequest = new XMLHttpRequest();
-    // }else {
-    //     xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-    // }
-    // xmlHttpRequest.open("post","/shopping/cart/number",true);
-    // xmlHttpRequest.send();
-    // xmlHttpRequest.onreadystatechange = function () {
-    //     if (xmlHttpRequest.status == 200&&xmlHttpRequest.readyState == 4)
-    //     {
-    //         var text = xmlHttpRequest.responseText;
-    //         var numberObject = JSON.parse(text);
-    //         tipNumber.innerHTML = numberObject.number;
-    //     }
-    // }
+    if (flag)
+    {
+        // $.ajax({
+        //     url:'/shopping/cart/buyNew',
+        //     type:'post',
+        //     cache:false,
+        //     data:shoppingCart,
+        //     contentType:'application/json',
+        //     dataType:'json'
+        // });
+       buyForm.submit();
+        form.append("shoppingCart",shoppingCart);
+    }else{
+        $.ajax({
+            url:'/shopping/cart/addCart',
+            type:'post',
+            cache:false,
+            data:shoppingCart,
+            contentType:'application/json',
+            dataType:'json'
+        });
+    }
 };
 
 add.onclick = function (){
@@ -84,11 +87,15 @@ console.log(footRL);
 console.log(closeImg);
 // slider.style.right = "0";
 // slider.style.backgroundColor = "gray";
+//点击立即购买
 footRR.onclick = function (){
     buyNew.style.display = "block";
+    flag = true;
 };
+//点击加入购物车
 footRL.onclick = function () {
     buyNew.style.display = "block";
+    flag = false;
 };
 closeImg.onclick = function (){
     buyNew.style.display = "none";

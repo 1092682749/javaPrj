@@ -204,4 +204,13 @@ public class Address {
     public void setIs_default(Integer is_default) {
         this.is_default = is_default;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", postal_code='" + postal_code + '\'' +
+                '}';
+    }
 }

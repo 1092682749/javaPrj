@@ -26,11 +26,21 @@ public class EvaluateServiceImpl extends AbstractService<Evaluate> implements Ev
     @Resource
     private MemberMapper memberMapper;
 
+    /**
+     * 按商品id查询出该商品的所有评价
+     * @param id
+     * @return
+     */
     @Override
     public List<Evaluate> findEvaluateByGoodsId(Integer id) {
         return evaluateMapper.findEvaluateByGoodsId(id);
     }
 
+    /**
+     * 将评价和用户以键值对的形式保存并返回
+     * @param id
+     * @return
+     */
     @Override
     public Map<Evaluate, Member> evaluateMemberMap(Integer id) {
         Map<Evaluate,Member> evaluateMemberMap = new HashMap<>();

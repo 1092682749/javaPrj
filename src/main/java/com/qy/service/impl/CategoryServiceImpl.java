@@ -22,6 +22,10 @@ public class CategoryServiceImpl extends AbstractService<Category> implements Ca
     @Resource
     private CategoryMapper categoryMapper;
 
+    /**
+     * 以商品分类的id为key，分类对象为value
+     * @return
+     */
     @Override
     public Map<Integer, Category> categoryMap() {
         List<Category> categoryList = categoryMapper.findAllCategory();

@@ -1,0 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.addressSelect{
+    margin-top: 10px;
+    font-size: 15px;
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    border-bottom: solid 1px #dddddd;
+    margin-bottom: 15px;
+}
+.memberName{
+    position: relative;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+.memberPhone{
+    position: relative;
+    margin-top: 7%;
+    margin-left: 2%;
+}
+.memberAddress{
+    position:absolute;
+    bottom: 7%;
+    left: 5%;
+}
+.addressSelect span:last-child{
+    position: absolute;
+    line-height: 50px;
+    right: 10%;
+}
+.listTip{
+    margin-top: 10px;
+}
+.goodsList{
+    /*background-color: bisque;*/
+    position: relative;
+    width: 100%;
+    height: 115px;
+    overflow: hidden;
+    /*padding-bottom: 10px;*/
+    border-bottom: solid 1px #dddddd;
+}
+.goodsList img{
+    width: 30%;
+    /*height: 100%;*/
+    object-fit: cover;
+    line-height: 115px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 5px;
+}
+.goodsContext{
+    /*background-color: #bbffe2;*/
+    width: 65%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+}
+.goodsName{
+    position: absolute;
+    top: 30px;
+    left: 5px;
+}
+.goodsPrice{
+    position: absolute;
+    bottom: 25px;
+    left: 5px;
+    color: #ff2f2f;
+}
+.buyNumber{
+    position: absolute;
+    right: 5px;
+    bottom: 25px;
+}
+.total{
+    height: 35px;
+    line-height: 35px;
+    text-align: right;
+    border-bottom: solid 1px #dddddd;
+    font-size: 0.6rem;
+    padding-right: 50px;
+}
+.memberNote{
+    border: solid 1px black;
+    width: 80%;
+    height: 65px;
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-bottom: 20px;
+}
+.reduceBox,.postage{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    /*text-align: right;*/
+    line-height: 40px;
+    border-top: solid 1px #dddddd;
+    border-bottom: solid 1px #dddddd;
+    padding-left: 20px;
+}
+.reducePrice,.postagePrice{
+    position: absolute;
+    right: 10%;
+    color: #ff2f2f;
+}
+.postage{
+    border-top: none;
+}
+.foot{
+    color:white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 55px;
+    background-color: #707170;
+    text-align: right;
+    line-height: 55px;
+}
+.foot>div:first-child{
+    display: inline-block;
+}
+.foot>div:last-child{
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+    background-color: #ff6600;
+    text-align: center;
+}
+.old-one-price{
+    position: absolute;
+    /*right: 50px;*/
+    /*top: 10px;*/
+    font-size: 0.7rem;
+    left: 5px;
+    bottom: 5px;
+}
+.old-one-price span:first-child{
+    color: gray;
+}
+.old-one-price span:nth-child(2){
+    color: #ff6600;
+}
+#line-image{
+    transform: rotate(-8deg);
+    width: 100%;
+    position: absolute;
+    /*right: calc(10% + 50px);*/
+    top: 33%;
+}
+div{
+    box-sizing: border-box;
+}
+.foot div{
+    cursor: pointer;
+}

@@ -28,8 +28,7 @@
         <!-- 如果需要滚动条 -->
         <!--<div class="swiper-scrollbar"></div>-->
     </div>
-<input id="goodsId" type="hidden" th:value="${goods.getId()}"/>
-<input id="memberID" type="hidden" th:value="${#httpSession.getAttribute('member').getId()}"/>
+
     <div class="goods-detail-wrapper">
         <div class="goods-title" th:text="${goods.getGoods_name()}"></div>
         <span class="goods-price">￥
@@ -46,7 +45,7 @@
         <div class="slider-line"></div>
         <div class="out-goods-details">
             <div class="goods-info">商品详情</div>
-            <div class="goods-info">评价（0）</div>
+            <div class="goods-info" th:text="'评价（'+${evaluateMemberMap.size()}+'）'">评价（0）</div>
             <div id="left-info" class="text-content">
                 <p th:text="${goods.getDetail()}"></p>
                 <img class="goodsImage" th:src="${goods.getGoods_img()}"/>
@@ -61,6 +60,7 @@
         </div>
     </div>
 </div>
+<!--页脚-->
 <div class="foot">
     <div class="foot-lift">
         <span class="foot-left-left">
@@ -83,6 +83,11 @@
         </span>
     </div>
 </div>
+<form id="buyForm" action="/shopping/cart/buyNew" method="post">
+    <input name="goods_id" id="goodsId" type="hidden" th:value="${goods.getId()}"/>
+    <input id="goods_num" name="goods_num" type="hidden"/>
+    <input id="s_add_time" name="s_add_time" type="hidden"/>
+    <input name="s_member_id" id="memberID" type="hidden" th:value="${#httpSession.getAttribute('member').getId()}"/>
 <div class="buy-new">
     <div class="img-out">
         <img class="frontPage" th:src="${goods.getGoods_img()}"/>
@@ -114,7 +119,7 @@
     </div>
     <div class="enter"><p>确定</p></div>
 </div>
-
+</form>
 </body>
 </html>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>

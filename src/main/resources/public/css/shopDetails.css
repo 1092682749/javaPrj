@@ -323,7 +323,9 @@ span{
     position: absolute;
     right: 27%;
 }
-
+.foot span{
+    cursor: pointer;
+}
 
 
 

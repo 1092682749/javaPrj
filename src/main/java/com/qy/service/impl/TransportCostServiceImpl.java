@@ -1,6 +1,7 @@
 package com.qy.service.impl;
 
 import com.qy.dao.TransportCostMapper;
+import com.qy.model.Address;
 import com.qy.model.TransportCost;
 import com.qy.service.TransportCostService;
 import com.qy.base.core.AbstractService;
@@ -19,4 +20,8 @@ public class TransportCostServiceImpl extends AbstractService<TransportCost> imp
     @Resource
     private TransportCostMapper transportCostMapper;
 
+    @Override
+    public TransportCost findCost(Address address) {
+        return transportCostMapper.findCost(address);
+    }
 }

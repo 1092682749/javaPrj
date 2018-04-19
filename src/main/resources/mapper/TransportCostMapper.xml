@@ -13,4 +13,7 @@
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
     <result column="add_time" jdbcType="VARCHAR" property="add_time" />
   </resultMap>
+  <select id="findCost" parameterType="com.qy.model.Address" resultType="com.qy.model.TransportCost">
+    SELECT *FROM transport_cost WHERE transport_province = #{province} AND transport_city =
+#{city}  </select>
 </mapper>

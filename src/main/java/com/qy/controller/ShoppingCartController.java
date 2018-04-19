@@ -1,9 +1,8 @@
 package com.qy.controller;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
-import com.qy.model.Member;
-import com.qy.model.ShoppingCart;
-import com.qy.service.ShoppingCartService;
+import com.qy.model.*;
+import com.qy.service.*;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +19,14 @@ import java.util.List;
 public class ShoppingCartController {
     @Resource
     private ShoppingCartService shoppingCartService;
+    @Resource
+    private GoodsService goodsService;
+    @Resource
+    private MemberService memberService;
+    @Resource
+    private AddressService addressService;
+    @Resource
+    private TransportCostService transportCostService;
 
     @PostMapping("/add")
     public Result add(@RequestBody ShoppingCart shoppingCart) {
@@ -58,9 +65,23 @@ public class ShoppingCartController {
 //    public ModelAndView cart(){
 //
 //    }
-    @PostMapping("/number")
+    @PostMapping("/addCart")
     public void number(@RequestBody ShoppingCart shoppingCart){
 //        shoppingCart.setS_member_id(member.getId());
         System.out.println("################"+shoppingCart.toString());
+    }
+    @PostMapping("/buyNew")
+    public ModelAndView submitOrder(ShoppingCart shoppingCart){
+        ModelAndView mav = new ModelAndView("submitOrder");
+        mav.addObject("shoppingCart",shoppingCart);
+        Goods goods = goodsService.findGoodsById(shoppingCart.getGoods_id());
+        mav.addObject("goods",goods);
+        Member member = memberService.findMemberById(shoppingCart.getS_member_id());
+        mav.addObject("member",member);
+        Address address = addressService.findDefaultAddress(member.getId());
+        mav.addObject("address",address);
+        TransportCost transportCost = transportCostService.findCost(address);
+        mav.addObject("cost",transportCost);
+        return mav;
     }
 }
