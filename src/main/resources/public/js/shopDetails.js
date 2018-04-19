@@ -29,27 +29,18 @@ var shoppingCartObject = {
     s_member_id:memberId
 };
 
-var shoppingCart = JSON.stringify(shoppingCartObject);
-
-goodsNumberInput.value = goodsNumber;
-sAddTimeInput.value = date;
 
 console.log(enter);
 // console.log(parseInt(intNumber));
 console.log(memberId);
 
 enter.onclick = function (){
+    var shoppingCart = JSON.stringify(shoppingCartObject);
     if (flag)
     {
-        // $.ajax({
-        //     url:'/shopping/cart/buyNew',
-        //     type:'post',
-        //     cache:false,
-        //     data:shoppingCart,
-        //     contentType:'application/json',
-        //     dataType:'json'
-        // });
-       buyForm.submit();
+        sAddTimeInput.value = date;
+        goodsNumberInput.value = goodsNumber;
+        buyForm.submit();
         form.append("shoppingCart",shoppingCart);
     }else{
         $.ajax({
@@ -69,6 +60,7 @@ add.onclick = function (){
     console.log();
     intNumber.innerHTML = count + "";
     goodsNumber++;
+    shoppingCartObject.goods_num = goodsNumber;
 };
 
 reduce.onclick = function() {
@@ -80,6 +72,7 @@ reduce.onclick = function() {
     }else{
         intNumber.innerHTML = count + "";
         goodsNumber--;
+        shoppingCartObject.goods_num = goodsNumber;
     }
 };
 console.log(footRR);

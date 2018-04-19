@@ -2,10 +2,12 @@ package com.qy.controller;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
 import com.qy.model.Address;
+import com.qy.model.Member;
 import com.qy.service.AddressService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -44,10 +46,10 @@ public class AddressController {
     }
 
     @GetMapping("/list")
-    public Result list(PageBean<Address> page) {
-        PageHelper.startPage(page.getPageNum(),page.getSize());
-        List<Address> list = addressService.findAll();
-        page.setList(list);
-        return ResultGenerator.successResult(page);
+    public ModelAndView addressList(@SessionAttribute Member member){
+        List<Address> addressList = addressService.findAddressByMemberId(member.getId());
+        ModelAndView mav = new ModelAndView("address");
+        mav.addObject("addressList",addressList);
+        return mav;
     }
 }

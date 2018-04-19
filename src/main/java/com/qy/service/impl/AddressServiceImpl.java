@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -22,5 +23,10 @@ public class AddressServiceImpl extends AbstractService<Address> implements Addr
     @Override
     public Address findDefaultAddress(Integer id) {
         return addressMapper.findDefaultAddress(id);
+    }
+
+    @Override
+    public List<Address> findAddressByMemberId(Integer id) {
+        return addressMapper.findAddressByMemberId(id);
     }
 }

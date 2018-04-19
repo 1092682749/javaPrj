@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="../public/css/addressList.css" />
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1"/>
@@ -7,11 +9,11 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="addressBox">
-        <span class="memberName">1231</span>
-        <span class="memberPhone">54646456</span>
-        <span class="memberAddress">1231313113131</span>
-        <hr>
+    <div class="addressBox" th:each="address:${addressList}">
+        <span class="memberName" th:text="${address.getName()}">1231</span>
+        <span class="memberPhone" th:text="${address.getPhone()}">54646456</span>
+        <span class="memberAddress" th:text="${address.getProvince()}+${address.getCity()}+${address.getPostal_code()}">1231313113131</span>
+        <hr/>
         <input name="selectAddress" type="radio"/>
         <span></span>
     </div>

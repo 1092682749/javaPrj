@@ -12,6 +12,7 @@
     background-color: white;
     /*border-top: solid 0.5px black;*/
     /*border-bottom: solid 0.5px black;*/
+    margin-bottom: 20px;
 }
 .memberName{
     position: absolute;
