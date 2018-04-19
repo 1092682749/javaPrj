@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.addressBox{
+    box-sizing: border-box;
+    position: relative;
+    height: 100px;
+    width: 100%;
+    padding-right: 10%;
+    padding-left: 10%;
+    background-color: white;
+    /*border-top: solid 0.5px black;*/
+    /*border-bottom: solid 0.5px black;*/
+}
+.memberName{
+    position: absolute;
+    top: 5px;
+    left: 10%;
+}
+.memberPhone{
+    position: absolute;
+    right: 10%;
+    top: 5px;
+}
+.memberAddress{
+    position: absolute;
+    top: 30px;
+}
+hr{
+    position: absolute;
+    top: 55px;
+    /*color: #d50041;*/
+    width: 80%;
+}
+.addressBox input{
+    position: absolute;
+    bottom: 10px;
+}
+body{
+    background-color: #f2f2f2;
+}
