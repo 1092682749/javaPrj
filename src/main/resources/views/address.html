@@ -10,12 +10,60 @@
 </head>
 <body>
     <div class="addressBox" th:each="address:${addressList}">
-        <span class="memberName" th:text="${address.getName()}">1231</span>
-        <span class="memberPhone" th:text="${address.getPhone()}">54646456</span>
-        <span class="memberAddress" th:text="${address.getProvince()}+${address.getCity()}+${address.getPostal_code()}">1231313113131</span>
+        <input id="saveAddressId" type="hidden" th:value="${address.getId()}"/>
+        <span id="memberName" class="memberName" th:text="${address.getName()}">1231</span>
+        <span id="memberPhone" class="memberPhone" th:text="${address.getPhone()}">54646456</span>
+        <span id="memberAddress" class="memberAddress" th:text="${address.getProvince()}+${address.getCity()}+${address.getPostal_code()}">1231313113131</span>
         <hr/>
-        <input name="selectAddress" type="radio"/>
-        <span></span>
+        <input id="selectAddress" type="radio"/>
+        <span class="radioAfter">默认地址</span>
+        <span class="editImage">
+            <img id="editImg" src="../public/imgs/addressEdit.png"/>
+            <img id="deleteImg" src="../public/imgs/addressDelete.png"/>
+        </span>
     </div>
+    <div class="foot">
+        <div id="addAddressDiv" class="addAddress">+新增地址</div>
+    </div>
+    <form id="addressForm">
+        <div class="editAddress">
+            <div class="firstBox">
+                <img id="closeImg" src="../public/imgs/close.png"/>
+                <span id="addTitle">新增收货地址</span>
+            </div>
+            <div>
+                <span>姓名</span>
+                <input id="memberNameInput"/>
+            </div>
+            <div>
+                <span>联系电话</span>
+                <input id="linkPhoneInput"/>
+            </div>
+            <div>
+                <span>收货地址</span>
+                <span id="selectSpan">
+                    <select name="city" class="citySelect">
+                        <option value="111">111</option>
+                        <option value="222">222</option>
+                        <option value="333">333</option>
+                    </select>
+                    <select name="area" class="areaSelect">
+                        <option value="qqq">qqq</option>
+                        <option value="www">www</option>
+                        <option value="eee">eee</option>
+                    </select>
+                </span>
+                <input id="detailAddressInput" value="详细地址"/>
+            </div>
+            <div>
+                <span name="postcode" class="postcode">邮政编码</span>
+                <input id="postInput"/>
+            </div>
+            <div class="foot">
+                <div id="saveAddressDiv" class="addAddress">保存</div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
+<script src="../public/js/addressList.js"></script>

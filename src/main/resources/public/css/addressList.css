@@ -41,3 +41,165 @@ hr{
 body{
     background-color: #f2f2f2;
 }
+.radioAfter{
+    position: absolute;
+    bottom: 7px;
+    left: 15%;
+
+}
+.editImage{
+    width: 20%;
+    position: absolute;
+    bottom: 10px;
+    right: 10%;
+    height: 30%;
+}
+.editImage img{
+    display: inline-block;
+    width: 30%;
+    /*object-fit: cover;*/
+    height: 100%;
+    margin-left: 10px;
+}
+
+.foot{
+    border-top: solid 1px #c0c0c0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    /*line-height: 60px;*/
+    /*background-color: red;*/
+}
+.addAddress{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 30%;
+    background-color: #169bd5;
+    color: white;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 5px;
+}
+.editAddress{
+    display: none;
+    background-color: white;
+    border-top: solid 1px black;
+    width: 100%;
+    height: 366px;
+    position: absolute;
+    bottom: 0;
+}
+.firstBox img{
+    /*position: absolute;*/
+    width: 5%;
+    object-fit: cover;
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*margin: auto;*/
+}
+.editAddress>div:first-child{
+    box-sizing: border-box;
+    padding-left: 10px;
+    position: relative;
+    width: 100%;
+    height: 49px;
+    border-bottom: solid 1px #f2f2f2;
+    line-height: 49px;
+}
+.editAddress>div:first-child span{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+.editAddress>div:nth-child(2){
+    position: relative;
+    padding-left: 10px;
+    width: 100%;
+    height: 49px;
+    border-bottom: solid 1px #f2f2f2;
+}
+.editAddress>div:nth-child(2) span,.editAddress>div:nth-child(3) span,.editAddress>div:nth-child(5) span{
+    height: 49px;
+    line-height: 49px;
+}
+.editAddress>div:nth-child(2) input,.editAddress>div:nth-child(3) input,.editAddress>div:nth-child(5) input{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 30%;
+    /*right: 30%;*/
+    margin: auto;
+    height: 25px;
+    width: 60%;
+    background-color: white;
+    outline: none;
+    border: solid 1px gray;
+}
+.editAddress>div:nth-child(3){
+    position: relative;
+    padding-left: 10px;
+    width: 100%;
+    height: 49px;
+    border-bottom: solid 1px #f2f2f2;
+}
+.editAddress>div:nth-child(4){
+    position: relative;
+    padding-left: 10px;
+    width: 100%;
+    height: 100px;
+    border-bottom: solid 1px #f2f2f2;
+}
+#selectSpan{
+    position: absolute;
+    left: 30%;
+    /*width: 100px;*/
+}
+.editAddress>div:nth-child(4) input{
+    width: 60%;
+    background-color: white;
+    outline: none;
+    border: solid 1px gray;
+    position: absolute;
+    bottom: 15px;
+    left: 30%;
+    height: 25px;
+}
+.editAddress>div:nth-child(5){
+    padding-left: 10px;
+    position: relative;
+}
+select {
+    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+    border: solid 1px #000;
+
+    /*很关键：将默认的select选择框样式清除*/
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+
+    /*在选择框的最右侧中间显示小箭头图片*/
+    background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+
+
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 14px;
+    /*width: 16%;*/
+    background-color: white;
+    margin-right: 7px;
+    width: 60px;
+}
+
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
