@@ -322,6 +322,8 @@ span{
     border-radius: 50%;
     position: absolute;
     right: 27%;
+    font-size: 0.7rem;
+    line-height: 17px;
 }
 .foot span{
     cursor: pointer;

@@ -30,6 +30,8 @@ public class GoodsController {
     private EvaluateService evaluateService;
     @Resource
     private MemberService memberService;
+    @Resource
+    private ShoppingCartService shoppingCartService;
 
     @PostMapping("/add")
     public Result add(@RequestBody Goods goods) {
@@ -69,6 +71,8 @@ public class GoodsController {
         Map<Evaluate,Member> evaluateMemberMap = evaluateService.evaluateMemberMap(id);
         List<Banner> banners = bannerService.findBannersById(id);
         Goods goods = goodsService.findGoodsById(id);
+        Map<ShoppingCart,Goods> shoppingCartMemberMap = shoppingCartService.findAllShoppingCartByMemberId(id);
+        mav.addObject("cartGoodsNum",shoppingCartMemberMap.size());
         mav.addObject("evaluateMemberMap",evaluateMemberMap);
         mav.addObject("banners",banners);
         mav.addObject("goods",goods);

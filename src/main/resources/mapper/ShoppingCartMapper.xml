@@ -11,4 +11,7 @@
     <result column="goods_id" jdbcType="INTEGER" property="goods_id" />
     <result column="goods_num" jdbcType="INTEGER" property="goods_num" />
   </resultMap>
+  <select id="findAllShoppingCartByMemberId" parameterType="int" resultType="com.qy.model.ShoppingCart">
+    SELECT *FROM shopping_cart WHERE s_member_id = #{id}
+  </select>
 </mapper>

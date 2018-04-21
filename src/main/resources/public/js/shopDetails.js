@@ -19,6 +19,7 @@ var goodsId = goodsIdInput.getAttribute('value');
 var buyForm = document.getElementById('buyForm');
 var goodsNumberInput = document.getElementById('goods_num');
 var sAddTimeInput = document.getElementById('s_add_time');
+// var tipNumber = document.getElementById('tipNumber');
 var date = Date();
 var goodsNumber = parseInt(intNumber.innerHTML);
 var flag = false;
@@ -29,11 +30,15 @@ var shoppingCartObject = {
     s_member_id:memberId
 };
 
-
+var tipNum = parseInt(tipNumber.innerHTML);
+console.log("tipNum:"+tipNum);
 console.log(enter);
 // console.log(parseInt(intNumber));
 console.log(memberId);
-
+if(tipNum == 0)
+{
+    tipNumber.style.display = "none";
+}
 enter.onclick = function (){
     var shoppingCart = JSON.stringify(shoppingCartObject);
     if (flag)
@@ -43,14 +48,22 @@ enter.onclick = function (){
         buyForm.submit();
         form.append("shoppingCart",shoppingCart);
     }else{
+        var num;
+        tipNumber.style.display = "block";
         $.ajax({
             url:'/shopping/cart/addCart',
             type:'post',
             cache:false,
             data:shoppingCart,
             contentType:'application/json',
-            dataType:'json'
+            dataType:'json',
+            success : function(data){
+                console.log("ajax"+data.cartNum);
+                num = data.cartNum;
+                tipNumber.innerHTML = num;
+            }
         });
+
     }
 };
 

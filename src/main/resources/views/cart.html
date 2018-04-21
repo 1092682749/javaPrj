@@ -1,38 +1,44 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" type="text/css" href="../public/css/cart_css.css"/>
+<link rel="stylesheet" type="text/css" href="../../public/css/cart_css.css"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title></title>
 </head>
 <body>
-	<div id="allSelected">
-	 <input type="radio"/>
-	</div>
-	 <span>全选</span>
+	<div id="topDiv">
+		<div id="allSelected">
+		 <input type="checkbox"/>
+		</div>
+		 <span>全选</span>
 
-	 <div class="goodsDiv">
-			<span class="selectSpan">
-				<input type="radio"/>
-			</span>
-			<img class="goodsImage" src="../public/img/demo3.jpg"/>
-			<div class="describe">
-				<span class="goodsName">优质苜蓿草</span>
-				<span>18.00</span>
-				<span>*1</span>
-				<span>
-					<img class="line-image" src="../public/img/u1558.png"/>
-					<span>asdasda</span>
+		 <div class="goodsDiv" th:each="i:${shoppingCartGoodsMap}">
+				<span class="selectSpan">
+					<input type="checkbox"/>
 				</span>
-			</div>
-			<img class="deleteImage" src="../public/img/wddd.png"/>
-	 </div>
+				<img class="goodsImage" th:src="${i.getValue().getGoods_img()}"/>
+				<div class="describe">
+					<span class="goodsName" th:text="${i.getValue().getGoods_name()}">优质苜蓿草</span>
+					<span class="goodsPrice" th:text="'￥'+${i.getValue().getGoods_price()-i.getValue().getGoods_reduce()}+'元／'+${i.getValue().getGoods_unit()}">18.00</span>
+					<span class="goodsNumber" th:text="'*'+${i.getKey().getGoods_num()}">*1</span>
+					<span class="lineAndPrice">
+						<img class="line-image" src="../../public/img/u1558.png"/>
+						<span class="oldPrice" th:text="'￥'+${i.getValue().getGoods_price()}+'元／'+${i.getValue().getGoods_unit()}">asdasda</span>
+					</span>
+				</div>
+				<img class="deleteImage" src="../../public/imgs/addressDelete.png"/>
+		 </div>
+		<p style="text-align: center">没有更多了</p>
+	</div>
 	 <div class="foot">
-		<div class="total">
+		<div class="total" th:text="'合计'+${total}+'(共'+${allNum}+')件'">
 			合计：Y0.00（共0件）
 		</div>
-		<div class="settle">结算(0)</div>
+		<div class="settle" th:text="'结算（'+${allNum}+'）'">结算(0)</div>
 	 </div>
 </body>
 </html>
+<script src="../public/js/cartList"></script>

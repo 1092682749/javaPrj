@@ -5,11 +5,15 @@ import com.qy.model.*;
 import com.qy.service.*;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import org.apache.commons.lang3.builder.ToStringExclude;
+import org.junit.jupiter.api.Test;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
 * Created by zaq on 2018/04/14.
@@ -53,22 +57,36 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/list")
-    public ModelAndView list() {
-//        PageHelper.startPage(page.getPageNum(),page.getSize());
-//        List<ShoppingCart> list = shoppingCartService.findAll();
-//        page.setList(list);
-//        return ResultGenerator.successResult(page);
+    public ModelAndView list(@SessionAttribute Member member) {
         ModelAndView mav = new ModelAndView("cart");
+        Map<ShoppingCart,Goods> shoppingCartGoodsMap = shoppingCartService.findAllShoppingCartByMemberId(member.getId());
+        mav.addObject("shoppingCartGoodsMap",shoppingCartGoodsMap);
+        BigDecimal total = new BigDecimal(0);
+        int allNum = 0;
+        for (Map.Entry<ShoppingCart,Goods> entry : shoppingCartGoodsMap.entrySet())
+        {
+            BigDecimal goodsNum = new BigDecimal(entry.getKey().getGoods_num());
+            BigDecimal oneTotal = (entry.getValue().getGoods_price().subtract(entry.getValue().getGoods_reduce())).multiply(goodsNum);
+            total = total.add(oneTotal);
+            allNum = allNum + entry.getKey().getGoods_num();
+
+        }
+        mav.addObject("total",total);
+        mav.addObject("allNum",allNum);
         return mav;
     }
-//    @RequestMapping("/content")
-//    public ModelAndView cart(){
-//
-//    }
+
     @PostMapping("/addCart")
-    public void number(@RequestBody ShoppingCart shoppingCart){
-//        shoppingCart.setS_member_id(member.getId());
+    @ResponseBody
+    public Map<String,Integer> number(@RequestBody ShoppingCart shoppingCart){
+        Map<String,Integer> map = new HashMap<>();
+        Date date = new Date();
+        shoppingCart.setS_add_time(new SimpleDateFormat("yyyy-MM-dd").format(date));
+        shoppingCartService.save(shoppingCart);
         System.out.println("################"+shoppingCart.toString());
+        Integer cartNum = shoppingCartService.findAllShoppingCartByMemberId(shoppingCart.getS_member_id()).size();
+        map.put("cartNum",cartNum);
+        return map;
     }
     @PostMapping("/buyNew")
     public ModelAndView submitOrder(ShoppingCart shoppingCart){
@@ -84,4 +102,5 @@ public class ShoppingCartController {
         mav.addObject("cost",transportCost);
         return mav;
     }
+
 }
