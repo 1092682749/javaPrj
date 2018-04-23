@@ -3,12 +3,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" type="text/css" href="../public/css/shop_ccs.css"/>
+	<link href="https://cdn.bootcss.com/Swiper/4.2.2/css/swiper.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="../public/css/shop_ccs.css"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>全部品种</title>
 </head>
 <body>
+<div class="swiper-container">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide" th:each="i:${indexBannerStringMap}">
+			<a th:href="${i.getValue()}">
+				<img th:src="${i.getKey().getI_src()}"/>
+			</a>
+		</div>
+	</div>
+	<!-- 如果需要分页器 -->
+	<div class="swiper-pagination"></div>
+
+	<!-- 如果需要导航按钮 -->
+	<!--<div class="swiper-button-prev"></div>-->
+	<!--<div class="swiper-button-next"></div>-->
+
+	<!-- 如果需要滚动条 -->
+	<!--<div class="swiper-scrollbar"></div>-->
+</div>
 <div class="goods" th:each="i:${goodsList}">
 	<p class="Title" th:text="${categoryMap.get(i.getCategory_id()).getC_name()}"></p>
 	<p class="describe" th:text="${categoryMap.get(i.getCategory_id()).getC_descripe()}"></p>
@@ -22,3 +41,34 @@
 <p align="center">没有更多了......</p>
 </body>
 </html>
+<script src="https://cdn.bootcss.com/Swiper/4.2.2/js/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        // direction: 'vertical',
+        loop: true,
+
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    })
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay:true,//等同于以下设置
+        /*autoplay: {
+          delay: 3000,
+          stopOnLastSlide: false,
+          disableOnInteraction: true,
+          },*/
+    });
+</script>

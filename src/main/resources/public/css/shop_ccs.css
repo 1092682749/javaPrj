@@ -2,8 +2,22 @@
 	margin: 0;
 	padding: 0;
 }
+a{
+	text-decoration: none;
+}
 body{
 	background-color: #d1d1d1;
+}
+.swiper-container {
+	width: 100%;
+	height: 385px;
+	/*margin-bottom: 30px;*/
+}
+
+.swiper-slide img{
+	/*object-fit: cover;*/
+	height: 385px;
+	width: 100%;
 }
 img{
 	position: relative;

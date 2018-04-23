@@ -32,6 +32,8 @@ public class GoodsController {
     private MemberService memberService;
     @Resource
     private ShoppingCartService shoppingCartService;
+    @Resource
+    private IndexBannerService indexBannerService;
 
     @PostMapping("/add")
     public Result add(@RequestBody Goods goods) {
@@ -65,13 +67,14 @@ public class GoodsController {
         return ResultGenerator.successResult(page);
     }
     @RequestMapping("/details")
-    public ModelAndView details(Integer id)
+    public ModelAndView details(Integer id,@SessionAttribute Member member)
     {
         ModelAndView mav = new ModelAndView("shopDetails");
         Map<Evaluate,Member> evaluateMemberMap = evaluateService.evaluateMemberMap(id);
+        System.out.println(member.getId());
         List<Banner> banners = bannerService.findBannersById(id);
         Goods goods = goodsService.findGoodsById(id);
-        Map<ShoppingCart,Goods> shoppingCartMemberMap = shoppingCartService.findAllShoppingCartByMemberId(id);
+        Map<ShoppingCart,Goods> shoppingCartMemberMap = shoppingCartService.findAllShoppingCartByMemberId(member.getId());
         mav.addObject("cartGoodsNum",shoppingCartMemberMap.size());
         mav.addObject("evaluateMemberMap",evaluateMemberMap);
         mav.addObject("banners",banners);
@@ -83,14 +86,27 @@ public class GoodsController {
     {
         ModelAndView mav = new ModelAndView("shopAll");
         Map<Integer,Category> categoryMap = categoryService.categoryMap();
+        Map<IndexBanner,String> indexBannerStringMap = new HashMap<>();
         List<Goods> goodsList = goodsService.findAll();
+        List<IndexBanner> indexBannerList = indexBannerService.findAll();
         mav.addObject("categoryMap",categoryMap);
         mav.addObject("goodsList",goodsList);
-        for (Goods g : goodsList) {
-            System.out.println(g.getCategory_id());
-            System.out.println(categoryMap.get(g.getCategory_id()).getC_name());
-        }
 
+        for (IndexBanner indexBanner : indexBannerList){
+            //设置map使区分活动和商品
+            String src = "#";
+            if (indexBanner.getType() == 0){
+                src = "#";
+            }else if (indexBanner.getType() == 1){
+                src = "/goods/details?id="+indexBanner.getGoods_id();
+            }
+            indexBannerStringMap.put(indexBanner,src);
+        }
+        mav.addObject("indexBannerStringMap",indexBannerStringMap);
+//        for (Goods g : goodsList) {
+//            System.out.println(g.getCategory_id());
+//            System.out.println(categoryMap.get(g.getCategory_id()).getC_name());
+//        }
         return mav;
     }
 //    @RequestMapping
