@@ -11,4 +11,5 @@ import java.util.List;
 public interface AddressService extends Service<Address> {
     public Address findDefaultAddress(Integer id);
     public List<Address> findAddressByMemberId(Integer id);
+    public void updateAddress(Address address);
 }

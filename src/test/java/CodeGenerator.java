@@ -34,7 +34,7 @@ public class CodeGenerator {
     private static final String PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(Constants.SERVICE_IMPL_PACKAGE);//生成的Service实现存放路径
     private static final String PACKAGE_PATH_CONTROLLER = packageConvertPath(Constants.CONTROLLER_PACKAGE);//生成的Controller存放路径
 
-    private static final String AUTHOR = "zaq";//@author
+    private static final String AUTHOR = "dyz";//@author
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {

@@ -21,4 +21,7 @@
   <select id="findAddressByMemberId" resultType="com.qy.model.Address" parameterType="int">
     SELECT *FROM address WHERE member_id = #{id}
   </select>
+  <update id="updateAddress" parameterType="com.qy.model.Address">
+    UPDATE address SET name = #{name},phone = #{phone},postal_code = #{postal_code},province = #{province}, city = #{city} WHERE id = #{id}
+  </update>
 </mapper>

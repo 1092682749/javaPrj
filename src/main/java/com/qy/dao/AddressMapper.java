@@ -8,4 +8,5 @@ import java.util.List;
 public interface AddressMapper extends Mapper<Address> {
     public Address findDefaultAddress(Integer id);
     public List<Address> findAddressByMemberId(Integer id);
+    public void updateAddress(Address address);//是否需要返回值
 }

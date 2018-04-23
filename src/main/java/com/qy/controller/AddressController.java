@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,21 +24,37 @@ public class AddressController {
     private AddressService addressService;
 
     @PostMapping("/add")
-    public Result add(@RequestBody Address address) {
+    public ModelAndView add(Address address,@SessionAttribute Member member) {
+        address.setAdd_time(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        address.setMember_id(member.getId());
         addressService.save(address);
-        return ResultGenerator.successResult();
+        ModelAndView mav = new ModelAndView("address");
+        List<Address> addressList = addressService.findAddressByMemberId(member.getId());
+        mav.addObject("addressList",addressList);
+        System.out.println("########add#########");
+        return mav;
     }
 
-    @PostMapping("/delete")
-    public Result delete(@RequestBody Integer id) {
+    @GetMapping("/delete")
+    public ModelAndView delete(Integer id,@SessionAttribute Member member) {
         addressService.deleteById(id);
-        return ResultGenerator.successResult();
+        ModelAndView mav = new ModelAndView("address");
+        List<Address> addressList = addressService.findAddressByMemberId(member.getId());
+        mav.addObject("addressList",addressList);
+        System.out.println("########add#########");
+        return mav;
     }
 
     @PostMapping("/update")
-    public Result update(@RequestBody Address address) {
-        addressService.update(address);
-        return ResultGenerator.successResult();
+    public ModelAndView update(Address address,@SessionAttribute Member member) {
+        System.out.println("########update#########");
+//        address.setAdd_time(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        address.setMember_id(member.getId());
+        addressService.updateAddress(address);
+        ModelAndView mav = new ModelAndView("address");
+        List<Address> addressList = addressService.findAddressByMemberId(member.getId());
+        mav.addObject("addressList",addressList);
+        return mav;
     }
 
     @GetMapping("/detail")

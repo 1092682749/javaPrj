@@ -45,8 +45,8 @@ enter.onclick = function (){
     {
         sAddTimeInput.value = date;
         goodsNumberInput.value = goodsNumber;
+        // form.append("shoppingCart",shoppingCart);
         buyForm.submit();
-        form.append("shoppingCart",shoppingCart);
     }else{
         var num;
         tipNumber.style.display = "block";

@@ -29,4 +29,9 @@ public class AddressServiceImpl extends AbstractService<Address> implements Addr
     public List<Address> findAddressByMemberId(Integer id) {
         return addressMapper.findAddressByMemberId(id);
     }
+
+    @Override
+    public void updateAddress(Address address) {
+        addressMapper.updateAddress(address);
+    }
 }

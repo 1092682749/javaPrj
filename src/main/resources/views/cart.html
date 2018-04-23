@@ -11,13 +11,13 @@
 <body>
 	<div id="topDiv">
 		<div id="allSelected">
-		 <input type="checkbox"/>
+		 <input id="dad" class="check" onchange="selectAll()" type="checkbox"/>
 		</div>
 		 <span>全选</span>
 
-		 <div class="goodsDiv" th:each="i:${shoppingCartGoodsMap}">
+		 <div th:id="${i.getKey().getId()}" class="goodsDiv" th:each="i:${shoppingCartGoodsMap}">
 				<span class="selectSpan">
-					<input type="checkbox"/>
+					<input class="check" onclick="countSum()" type="checkbox"/>
 				</span>
 				<img class="goodsImage" th:src="${i.getValue().getGoods_img()}"/>
 				<div class="describe">
@@ -34,11 +34,11 @@
 		<p style="text-align: center">没有更多了</p>
 	</div>
 	 <div class="foot">
-		<div class="total" th:text="'合计'+${total}+'(共'+${allNum}+')件'">
+		<div class="total" >
 			合计：Y0.00（共0件）
 		</div>
-		<div class="settle" th:text="'结算（'+${allNum}+'）'">结算(0)</div>
+		<div class="settle">结算(0)</div>
 	 </div>
 </body>
 </html>
-<script src="../public/js/cartList"></script>
+<script src="../../public/js/cartList.js"></script>
