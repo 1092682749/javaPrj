@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ShoppingCartMapper extends Mapper<ShoppingCart> {
     public List<ShoppingCart> findAllShoppingCartByMemberId(Integer id);
+    public ShoppingCart findShoppingCartById(Integer id);
 }

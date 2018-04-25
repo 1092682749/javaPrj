@@ -12,4 +12,5 @@ import java.util.Map;
  */
 public interface ShoppingCartService extends Service<ShoppingCart> {
     public Map<ShoppingCart,Goods> findAllShoppingCartByMemberId(Integer id);
+    public Map<ShoppingCart,Goods> findAllShoppingCartByIds(List<Integer> ids);
 }

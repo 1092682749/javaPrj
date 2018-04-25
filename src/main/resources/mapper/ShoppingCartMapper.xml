@@ -14,4 +14,7 @@
   <select id="findAllShoppingCartByMemberId" parameterType="int" resultType="com.qy.model.ShoppingCart">
     SELECT *FROM shopping_cart WHERE s_member_id = #{id}
   </select>
+  <select id="findShoppingCartById" parameterType="int" resultType="com.qy.model.ShoppingCart">
+    select *from shopping_cart where id = #{id}
+  </select>
 </mapper>

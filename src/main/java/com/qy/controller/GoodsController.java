@@ -109,5 +109,9 @@ public class GoodsController {
 //        }
         return mav;
     }
-//    @RequestMapping
+    @RequestMapping("/manage")
+    public ModelAndView manage(@SessionAttribute Admin admin){
+        ModelAndView mav = new ModelAndView("admin/bannerManage");
+        return mav;
+    }
 }

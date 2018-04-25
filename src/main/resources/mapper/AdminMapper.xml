@@ -12,4 +12,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="add_time" jdbcType="VARCHAR" property="add_time" />
   </resultMap>
+  <select id="findAdminByAccount" parameterType="com.qy.model.Admin" resultType="com.qy.model.Admin">
+    select *from admin where account = #{account}
+  </select>
 </mapper>

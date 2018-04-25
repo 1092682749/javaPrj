@@ -16,11 +16,11 @@
 <script>
     var account = document.getElementById('account');
     var password = document.getElementById('password');
+
     function loginVerify() {
-        console.log("click");
         var adminObject = {
-            account:account.getAttribute("value"),
-            password:password.getAttribute("value")
+            account:account.value,
+            password:password.value
         };
         var admin = JSON.stringify(adminObject);
         $.ajax({
@@ -30,7 +30,7 @@
             contentType:'application/json',
             dataType:'json',
             success: function (data) {
-                if (data.bool == "false")
+                if (data.bool == false)
                 {
                     alert(data.msg);
                 }else {

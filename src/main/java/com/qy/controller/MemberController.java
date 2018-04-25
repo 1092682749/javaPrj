@@ -1,6 +1,7 @@
 package com.qy.controller;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
+import com.qy.model.Admin;
 import com.qy.model.Member;
 import com.qy.service.MemberService;
 import com.qy.base.core.PageBean;
@@ -56,6 +57,11 @@ public class MemberController {
     @RequestMapping("/person")
     public ModelAndView person(){
         ModelAndView mav = new ModelAndView("Pcenter");
+        return mav;
+    }
+    @RequestMapping("/manage")
+    public ModelAndView manage(@SessionAttribute Admin admin){
+        ModelAndView mav = new ModelAndView("admin/bannerManage");
         return mav;
     }
 }

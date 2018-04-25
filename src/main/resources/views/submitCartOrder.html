@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../public/css/submitOrder.css"/>
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1"/>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<!--收货地址-->
+<a th:href="@{'/address/list'}">
+    <div class="addressSelect">
+        <span class="memberName" th:text="${member.getOpen_id()}">张沫沫</span>
+        <span class="memberPhone" th:text="${member.getPhone()}">111112222</span>
+        <span class="memberAddress" th:text="${address.getProvince()}+${address.getCity()}+${address.getPostal_code()}">北京朝阳区</span>
+        <span> > </span>
+    </div>
+</a>
+<!--购物清单-->
+<span class="listTip">购物清单</span>
+<div class="goodsList" th:each="i:${shoppingCartGoodsMap}">
+    <img th:src="${i.getValue().getGoods_img()}"/>
+    <div class="goodsContext">
+        <span class="goodsName" th:text="${i.getValue().getGoods_name()}">优质苜蓿草</span >
+        <span class="goodsPrice" th:text="'￥'+${i.getValue().getGoods_price()-i.getValue().getGoods_reduce()}+'/'+${i.getValue().getGoods_unit()}">20.00/(200)g袋</span>
+        <span class="buyNumber">数量<span th:text="${i.getKey().getGoods_num()}">1</span></span>
+        <span class="old-one-price">
+                <span>
+                    <img id="line-image" src="../public/img/u1558.png"/>原价￥
+                </span>
+                <span th:text="${i.getValue().getGoods_price()}">20</span>
+                /<span th:text="${i.getValue().getGoods_unit()}">t</span>
+        </span>
+    </div>
+</div>
+<div class="total">
+    共计<span class="count"></span>件商品，总价为<span class="totalPrice" th:text="${sumPrice}+'元'"></span>
+</div>
+
+<!--买家留言-->
+<textarea name="memberNote" class="memberNote">买家留言</textarea>
+
+<div class="reduceBox">
+    直降金额<span class="reducePrice" th:text="${sumReduce}+'元'">2元</span>
+</div>
+<div class="postage">
+    配送费<span class="postagePrice" th:text="${cost}+'元'">10</span>
+</div>
+
+<div class="foot">
+    实付<div style="color: #ff6600" th:text="${sumPrice}+'元'"></div>
+    <div>提交订单</div>
+</div>
+</body>
+</html>

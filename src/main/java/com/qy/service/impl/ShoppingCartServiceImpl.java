@@ -37,4 +37,17 @@ public class ShoppingCartServiceImpl extends AbstractService<ShoppingCart> imple
         }
         return shoppingCartGoodsMap;
     }
+
+    @Override
+    public Map<ShoppingCart, Goods> findAllShoppingCartByIds(List<Integer> ids) {
+        Map<ShoppingCart,Goods> shoppingCartGoodsMap = new HashMap<>();
+        for (Integer integer : ids){
+            ShoppingCart shoppingCart = shoppingCartMapper.findShoppingCartById(integer);
+            Goods goods = goodsService.findGoodsById(shoppingCart.getGoods_id());
+            shoppingCartGoodsMap.put(shoppingCart,goods);
+        }
+        return shoppingCartGoodsMap;
+    }
+
+
 }

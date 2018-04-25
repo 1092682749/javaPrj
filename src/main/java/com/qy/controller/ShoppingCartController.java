@@ -97,6 +97,11 @@ public class ShoppingCartController {
         Member member = memberService.findMemberById(shoppingCart.getS_member_id());
         mav.addObject("member",member);
         Address address = addressService.findDefaultAddress(member.getId());
+        if (address == null)
+        {
+            ModelAndView redirect =new ModelAndView("redirect:../../address/list");
+            return redirect;
+        }
         mav.addObject("address",address);
         TransportCost transportCost = transportCostService.findCost(address);
         mav.addObject("cost",transportCost);

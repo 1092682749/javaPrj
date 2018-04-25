@@ -5,6 +5,7 @@ import com.qy.model.Admin;
 import com.qy.service.AdminService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -60,16 +61,20 @@ public class AdminController {
         ModelAndView mav = new ModelAndView("admin/login");
         return mav;
     }
+
     @RequestMapping("/verify")
     @ResponseBody
-    public Map<String,Object> verify(Admin admin){
-        Map<String,Object> map = new HashMap<>();
-        map.put("bool",false);
-        map.put("msg","登陆失败!");
-        return map;
+    public Map<String,Object> verify(@RequestBody Admin admin, Model model){
+        Map<String,Object> returnMap = new HashMap<>();
+        Map<String,Object> verifyMap= adminService.verify(admin);
+        returnMap = verifyMap;
+        model.addAttribute("admin",verifyMap.get("object"));
+        return returnMap;
     }
     @RequestMapping("index")
-    public ModelAndView index(){
-        return new ModelAndView("admin/index");
+    public ModelAndView index(@SessionAttribute("admin") Admin admin){
+        System.out.println(admin.getId());
+        ModelAndView mav = new ModelAndView("admin/index");
+        return mav;
     }
 }

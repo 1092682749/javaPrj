@@ -1,4 +1,5 @@
 var total = document.getElementsByClassName('total')[0];
+var goodsDivList = document.getElementsByClassName('goodsDiv');
 var sumPrice = 0;
 function selectAll() {
     var checkboxArr = document.getElementsByClassName("check");
@@ -17,7 +18,6 @@ function selectAll() {
 function countSum() {
     sumPrice = 0;
     var sumNumber = 0;
-    var goodsDivList = document.getElementsByClassName('goodsDiv');
     for (var i = 0 ; i < goodsDivList.length ; i++){
         var check = goodsDivList[i].getElementsByClassName('check')[0];
         if (check.checked == true)
@@ -32,4 +32,29 @@ function countSum() {
         }
     }
     total.innerHTML = '合计：￥' + sumPrice + '（共' + sumNumber + '件）';
+}
+function submitShoppingCart() {
+    var shoppingCartArr = new Array();
+    for (var i = 0 ; i < goodsDivList.length ; i++){
+        var check = goodsDivList[i].getElementsByClassName('check')[0];
+        if (check.checked == true)
+        {
+            var shoppingCartId = goodsDivList[i].getAttribute("id");
+            shoppingCartArr.push(shoppingCartId);
+            console.log(shoppingCartId);
+        }
+    }
+    var strArr = JSON.stringify(shoppingCartArr);
+    console.log(strArr);
+    $.ajax({
+        url:"/order/buy",
+        type:"post",
+        // contentType:"application/json",
+        // dataType:"json",
+        traditional: true,
+        data:{"strArr":shoppingCartArr},
+        success:function (data) {
+        window.open("/order/submitCartOrder");
+        }
+    });
 }

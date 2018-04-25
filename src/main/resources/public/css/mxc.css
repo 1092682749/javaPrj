@@ -31,10 +31,6 @@ iframe{
 	height: calc(100% - 60px);
 	border:0;
 	position: absolute;
-	/*top: 0;*/
-	/*bottom: 60px;*/
-	/*bottom: 0px;
-	height: 0px;*/
 }
 a{
 	padding: 5px;
