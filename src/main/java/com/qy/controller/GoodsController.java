@@ -70,7 +70,10 @@ public class GoodsController {
     public ModelAndView details(Integer id,@SessionAttribute Member member)
     {
         ModelAndView mav = new ModelAndView("shopDetails");
-        Map<Evaluate,Member> evaluateMemberMap = evaluateService.evaluateMemberMap(id);
+        //通过java代码使评价和用户绑定
+//        Map<Evaluate,Member> evaluateMemberMap = evaluateService.evaluateMemberMap(id);
+        //通过sql查询返回评价和用户绑定的map
+        List<Map<Evaluate,Member>> evaluateMemberMap = evaluateService.findEvaluateByGoodsIdSql(id);
         System.out.println(member.getId());
         List<Banner> banners = bannerService.findBannersById(id);
         Goods goods = goodsService.findGoodsById(id);

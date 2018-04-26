@@ -46,18 +46,27 @@
         <div class="out-goods-details">
             <div class="goods-info">商品详情</div>
             <div class="goods-info" th:text="'评价（'+${evaluateMemberMap.size()}+'）'">评价（0）</div>
-            <div id="left-info" class="text-content">
-                <p th:text="${goods.getDetail()}"></p>
-                <img class="goodsImage" th:src="${goods.getGoods_img()}"/>
-            </div>
-            <div id="right-info" class="text-content">
-                <div class="evaluate" th:each="i:${evaluateMemberMap}">
-                    <img th:src="${i.getValue().getHeader_img()}" class="head-image"/>
-                    <span class="member-name" th:text="${i.getValue().getOpen_id()}">asdasda</span>
-                    <span class="evaluate-context" th:text="${i.getKey().getContent()}">123131</span>
-                </div>
-            </div>
         </div>
+        <div id="left-info" class="text-content">
+            <p th:text="${goods.getDetail()}"></p>
+            <img class="goodsImage" th:src="${goods.getGoods_img()}"/>
+        </div>
+        <div id="right-info">
+            <div th:each="i:${evaluateMemberMap}" class="evaluate">
+                <img th:src="${i.get('header_img')}" class="head-image" src="../public/img/cart.png"/>
+                <span th:text="${i.get('open_id')}" class="member-name">asdasda</span>
+                <span th:text="${i.get('content')}" class="evaluate-context">123131</span>
+            </div>
+
+
+        </div>
+        <!--<div id="right-info" class="text-content">-->
+            <!--<div class="evaluate" th:each="i:${evaluateMemberMap}">-->
+                <!--<img th:src="${i.get('header_img')}" class="head-image"/>-->
+                <!--<span class="member-name" th:text="${i.get('open_id')}">asdasda</span>-->
+                <!--<span class="evaluate-context" th:text="${i.get('content')}">123131</span>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
 <!--页脚-->

@@ -51,4 +51,9 @@ public class EvaluateServiceImpl extends AbstractService<Evaluate> implements Ev
         }
         return evaluateMemberMap;
     }
+
+    @Override
+    public List<Map<Evaluate,Member>> findEvaluateByGoodsIdSql(Integer id) {
+        return evaluateMapper.findEvaluateByGoodsIdSql(id);
+    }
 }

@@ -70,7 +70,7 @@ public class OrderController {
         return mav;
     }
     @RequestMapping("buy")
-    public ModelAndView buy(@RequestParam("strArr") String[] strArr, Model model){
+    public ModelAndView buy(@RequestParam("strArr") String[] strArr){
         List<Integer> integers = new ArrayList<>();
         for (int i = 0; i<strArr.length; i++){
             System.out.println(strArr[i]);
@@ -95,32 +95,36 @@ public class OrderController {
             return redirect;
         }
         mav.addObject("shoppingCartGoodsMap",shoppingCartGoodsMap);
-        model.addAttribute("shoppingCartGoodsMap",shoppingCartGoodsMap);
+
         mav.addObject("cost",transportCost);
-        model.addAttribute("cost",transportCost);
+
         mav.addObject("member",member);
-        model.addAttribute("member",member);
+
         mav.addObject("address",address);
-        model.addAttribute("address",address);
+
         mav.addObject("sumPrice",sumPrice);
-        model.addAttribute("sumPrice",sumPrice);
+
         mav.addObject("sumReduce",sumReduce);
-        model.addAttribute("sumReduce",sumReduce);
+
         mav.setViewName("submitCartOrder");
         return mav;
     }
-    //Map<ShoppingCart,Goods> shoppingCartGoodsMap,Member member,Address address,
-    //                                        TransportCost cost,Double sumPrice,Double sumReduce
+
     @RequestMapping("/submitCartOrder")
-    public ModelAndView submitCartOrder(Model model){
+    public ModelAndView submitCartOrder( Map<ShoppingCart,Goods> shoppingCartGoodsMap,Member member,Address address,
+                                         TransportCost cost,Double sumPrice,Double sumReduce){
         ModelAndView mav = new ModelAndView("submitCartOrder");
-        Map map = model.asMap();
-        mav.addObject("shoppingCartGoodsMap",map.get("shoppingCartGoodsMap"));
-        mav.addObject("cost",map.get("cost"));
-        mav.addObject("member",map.get("member"));
-        mav.addObject("address",map.get("address"));
-        mav.addObject("sumPrice",map.get("sumPrice"));
-        mav.addObject("sumReduce",map.get("sumReduce"));
+        mav.addObject("shoppingCartGoodsMap",shoppingCartGoodsMap);
+
+        mav.addObject("cost",cost);
+
+        mav.addObject("member",member);
+
+        mav.addObject("address",address);
+
+        mav.addObject("sumPrice",sumPrice);
+
+        mav.addObject("sumReduce",sumReduce);
         return mav;
     }
 }

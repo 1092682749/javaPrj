@@ -14,4 +14,8 @@
   <select id="findEvaluateByGoodsId" parameterType="int" resultType="com.qy.model.Evaluate">
     SELECT *FROM evaluate WHERE goods_id = #{id}
   </select>
+  <select id="findEvaluateByGoodsIdSql" parameterType="int" resultType="map">
+    SELECT*FROM member AS m,(SELECT *FROM evaluate WHERE goods_id = #{id}) AS e
+ WHERE m.id = e.member_id
+  </select>
 </mapper>

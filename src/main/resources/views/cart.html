@@ -15,9 +15,10 @@
 		</div>
 		 <span>全选</span>
 
+		<form target="_top" id="cartForm" action="/order/buy" method="post">
 		 <div th:id="${i.getKey().getId()}" class="goodsDiv" th:each="i:${shoppingCartGoodsMap}">
 				<span class="selectSpan">
-					<input class="check" onclick="countSum()" type="checkbox"/>
+					<input th:value="${i.getKey().getId()}" class="check" name="strArr" onclick="countSum()" type="checkbox"/>
 				</span>
 				<img class="goodsImage" th:src="${i.getValue().getGoods_img()}"/>
 				<div class="describe">
@@ -31,6 +32,7 @@
 				</div>
 				<img class="deleteImage" src="../../public/imgs/addressDelete.png"/>
 		 </div>
+		</form>
 		<p style="text-align: center">没有更多了</p>
 	</div>
 	 <div class="foot">

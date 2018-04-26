@@ -13,4 +13,5 @@ import java.util.Map;
 public interface EvaluateService extends Service<Evaluate> {
         public List<Evaluate> findEvaluateByGoodsId(Integer id);
         public Map<Evaluate,Member> evaluateMemberMap(Integer id);
+        public List<Map<Evaluate,Member>> findEvaluateByGoodsIdSql(Integer id);
 }
