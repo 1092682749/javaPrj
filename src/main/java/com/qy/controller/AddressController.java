@@ -12,7 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * Created by zaq on 2018/04/14.
@@ -25,11 +27,22 @@ public class AddressController {
 
     @PostMapping("/add")
     public ModelAndView add(Address address,@SessionAttribute Member member) {
+        boolean hasDefault = false;
         address.setAdd_time(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         address.setMember_id(member.getId());
+        List<Address> addressList = addressService.findAddressByMemberId(member.getId());
+        for (Address a : addressList){
+            if (a.getIs_default() == 1){
+                hasDefault = true;
+            }
+        }
+        if (hasDefault == false){
+            address.setIs_default(1);
+        }else {
+            address.setIs_default(0);
+        }
         addressService.save(address);
         ModelAndView mav = new ModelAndView("address");
-        List<Address> addressList = addressService.findAddressByMemberId(member.getId());
         mav.addObject("addressList",addressList);
         System.out.println("########add#########");
         return mav;
@@ -69,5 +82,22 @@ public class AddressController {
         ModelAndView mav = new ModelAndView("address");
         mav.addObject("addressList",addressList);
         return mav;
+    }
+    @GetMapping("/setAddress")
+    public void setAddress(String id,@SessionAttribute Member member){
+        Map<String,String> stringMap = new HashMap<>();
+        Integer integerId = Integer.parseInt(id);
+        List<Address> addressList = addressService.findAddressByMemberId(member.getId());
+        for (Address address : addressList){
+            if (address.getIs_default() == 1)
+            {
+                address.setIs_default(0);
+            }
+            if (address.getId() == integerId)
+            {
+                address.setIs_default(1);
+            }
+        }
+//        return stringMap;
     }
 }

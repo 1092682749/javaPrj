@@ -35,6 +35,15 @@ function countSum() {
     total.innerHTML = '合计：￥' + sumPrice + '（共' + sumNumber + '件）';
 }
 function submitShoppingCart() {
+    console.log("one");
+    for (var i = 0 ; i < goodsDivList.length ; i++){
+        var check = goodsDivList[i].getElementsByClassName('check')[0];
+        if (check.checked == false)
+        {
+            alert("您还没有选择商品");
+            return;
+        }
+    }
     cartForm.submit();
     // var shoppingCartArr = new Array();
     // for (var i = 0 ; i < goodsDivList.length ; i++){

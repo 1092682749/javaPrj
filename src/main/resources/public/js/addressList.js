@@ -8,7 +8,32 @@ var memberNameInput = document.getElementById('memberNameInput');
 var addAddressDiv = document.getElementById('addAddressDiv');
 var addressForm = document.getElementById('addressForm');
 var addressIdInput = document.getElementById('addressIdInput');
+var addressDefaultList = document.getElementsByClassName('radio');
+
 var flag = true;
+//设置默认地址
+for (var i = 0; i < addressDefaultList.length; i++){
+    if(addressDefaultList[i].value == 1){
+        addressDefaultList[i].checked = true;
+    }
+}
+function setDefault(_this){
+    if (_this.checked == true){
+        var id = _this.getAttribute('id');
+        console.log(id);
+        $.ajax({
+            url:"/address/setAddress",
+            type:"get",
+            // contentType:"application/json",
+            // dataType:"json",
+            traditional: true,
+            data:{"id":id},
+            success:function (data) {
+                alert("设置成功");
+            }
+        });
+    }
+}
 addAddressDiv.onclick = function () {
     flag = false;
     addTitle.innerHTML="新增收货地址";

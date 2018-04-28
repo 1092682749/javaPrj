@@ -89,6 +89,7 @@ public class OrderController {
             sumPrice += num*price;
             sumReduce += entry.getValue().getGoods_reduce().doubleValue();
         }
+        sumPrice += transportCost.getPrice().doubleValue();
         if (address == null)
         {
             ModelAndView redirect =new ModelAndView("redirect:../address/list");
@@ -96,7 +97,7 @@ public class OrderController {
         }
         mav.addObject("shoppingCartGoodsMap",shoppingCartGoodsMap);
 
-        mav.addObject("cost",transportCost);
+        mav.addObject("cost",transportCost.getPrice());
 
         mav.addObject("member",member);
 
@@ -110,21 +111,21 @@ public class OrderController {
         return mav;
     }
 
-    @RequestMapping("/submitCartOrder")
-    public ModelAndView submitCartOrder( Map<ShoppingCart,Goods> shoppingCartGoodsMap,Member member,Address address,
-                                         TransportCost cost,Double sumPrice,Double sumReduce){
-        ModelAndView mav = new ModelAndView("submitCartOrder");
-        mav.addObject("shoppingCartGoodsMap",shoppingCartGoodsMap);
-
-        mav.addObject("cost",cost);
-
-        mav.addObject("member",member);
-
-        mav.addObject("address",address);
-
-        mav.addObject("sumPrice",sumPrice);
-
-        mav.addObject("sumReduce",sumReduce);
-        return mav;
-    }
+//    @RequestMapping("/submitCartOrder")
+//    public ModelAndView submitCartOrder( Map<ShoppingCart,Goods> shoppingCartGoodsMap,Member member,Address address,
+//                                         TransportCost cost,Double sumPrice,Double sumReduce){
+//        ModelAndView mav = new ModelAndView("submitCartOrder");
+//        mav.addObject("shoppingCartGoodsMap",shoppingCartGoodsMap);
+//
+//        mav.addObject("cost",cost);
+//
+//        mav.addObject("member",member);
+//
+//        mav.addObject("address",address);
+//
+//        mav.addObject("sumPrice",sumPrice);
+//
+//        mav.addObject("sumReduce",sumReduce);
+//        return mav;
+//    }
 }

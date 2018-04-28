@@ -14,7 +14,7 @@
         <span class="memberPhone" th:text="${address.getPhone()}">54646456</span>
         <span class="memberAddress" th:text="${address.getProvince()}+${address.getCity()}+${address.getPostal_code()}">1231313113131</span>
         <hr/>
-        <input type="radio"/>
+        <input name="default" onclick="setDefault(this)" th:id="${address.getId()}" class="radio" type="radio" th:value="${address.getIs_default()}"/>
         <span class="radioAfter">默认地址</span>
         <span class="editImage">
             <img th:onclick="'javascript:displayBox('+${address.getId()}+')'" src="../public/imgs/addressEdit.png"/>
@@ -66,4 +66,5 @@
     </form>
 </body>
 </html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="../public/js/addressList.js"></script>

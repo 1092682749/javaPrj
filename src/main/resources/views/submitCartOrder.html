@@ -9,6 +9,7 @@
     <title>Title</title>
 </head>
 <body>
+<div class="topBox">
 <!--收货地址-->
 <a th:href="@{'/address/list'}">
     <div class="addressSelect">
@@ -48,7 +49,7 @@
 <div class="postage">
     配送费<span class="postagePrice" th:text="${cost}+'元'">10</span>
 </div>
-
+</div>
 <div class="foot">
     实付<div style="color: #ff6600" th:text="${sumPrice}+'元'"></div>
     <div>提交订单</div>

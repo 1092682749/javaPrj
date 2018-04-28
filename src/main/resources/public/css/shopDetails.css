@@ -114,6 +114,7 @@ a{
     height: 300px;
 }
 .evaluate{
+    font-size: 0.8rem;
     display: block;
     position: relative;
     margin-bottom: 5px;
@@ -122,15 +123,20 @@ a{
     /*height: 100px;*/
 }
 .member-name{
+    left: 25%;
+    /*width: 75%;*/
     position: absolute;
+    display: inline-block;
     left: 25%;
     top: 5px;
 }
 .evaluate-context{
-    width: 75%;
+    left: 25%;
+    /*width: 75%;*/
     right: 0;
     position: absolute;
-    top: 30px;
+    bottom: 5px;
+    display: inline-block;
 }
 .head-image{
     border-radius: 50%;
