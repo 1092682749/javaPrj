@@ -23,7 +23,7 @@ import java.util.List;
 */
 @RestController
 @RequestMapping("/")
-@SessionAttributes(names = {"member"},types = {Member.class})
+@SessionAttributes(names = {"member"})
 public class IndexController {
     @Autowired
     private BannerService bannerService;

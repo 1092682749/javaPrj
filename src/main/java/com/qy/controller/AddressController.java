@@ -2,6 +2,7 @@ package com.qy.controller;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
 import com.qy.model.Address;
+import com.qy.model.Admin;
 import com.qy.model.Member;
 import com.qy.service.AddressService;
 import com.qy.base.core.PageBean;
@@ -100,4 +101,5 @@ public class AddressController {
         }
 //        return stringMap;
     }
+
 }

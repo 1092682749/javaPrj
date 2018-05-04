@@ -1,17 +1,250 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .menu{
+            display: inline-block;
+            position: relative;
+            width: 150px;
+            height: 700px;
+            background-color: #05224d;
+            border: 1px solid #05224d;
+            text-align: center;
+            /*line-height: 20%;*/
+            line-height: 50px;
+        }
+        .menuTable a{
+            font-size: 0.8rem;
+            color: white;
+            text-decoration: none;
+            display: block;
+            /*border: solid 1px #666666;*/
+        }
+        .menuTable td{
+            border: 1px solid #666666;
+        }
+        .menuTable{
+            border: 1px solid #666666;
+            border-collapse: collapse;
+            position: absolute;
+            width: 100px;
+            top: 100px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        .moreManage{
+            position: relative;
+        }
+        .navigation{
+            display: none;
+            position: absolute;
+            width: 100px;
+            background-color: #05224d;
+            right: -100px;
+            top: 0px;
+        }
+        .moreManage:hover .navigation{
+            display: block;
+        }
+        .navigation a:hover{
+            background-color: #6389ff;
+        }
+        .allFrame{
+            width: calc(100% - 152px);
+            position: absolute;
+            left: 152px;
+        }
+        .topTip{
+            display: inline-block;
+            left: 200px;
+            width: 70%;
+            height: 35px;
+            background-color: #000027;
+            color: white;
+            line-height: 35px;
+            position: absolute;
+            top: 0;
+            /*left: 200px;*/
+
+        }
+        #addBanner{
+            width: 150px;
+            height: 45px;
+            background-color: #1988cb;
+            color: white;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            position: absolute;
+            top: 50px;
+            left: 200px;
+        }
+        .bannerTable{
+            position: absolute;
+            /*border: 1px solid black;*/
+            /*border-collapse: collapse;*/
+            width: 80%;
+            left: 200px;
+            top: 120px;
+        }
+        /*.bannerTable th{*/
+            /*border: 1px solid #666666;*/
+            /*background-color: #200f30;*/
+            /*color: white;*/
+            /*!*height: 20px;*!*/
+            /*line-height: 40px;*/
+        /*}*/
+        /*.bannerTable td{*/
+            /*border: 1px solid #666666;*/
+            /*text-align: center;*/
+        /*}*/
+        /*.bannerTable img{*/
+            /*width: 50%;*/
+            /*object-fit: contain;*/
+        /*}*/
+    </style>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<a href="../banner/manage" target="manageContext">轮播图管理</a>
-<a href="../member/manage" target="manageContext">用户管理</a>
-<a href="../goods/manage" target="manageContext">商品管理</a>
-<a href="../order/manage" target="manageContext">订单管理</a>
-<a href="../transport/cost/manage" target="manageContext">配送费管理</a>
-<a href="../system/message/all" target="manageContext">系统消息</a>
-<a href="../system/message/manage" target="manageContext">系统管理</a>
-<iframe href="../banner/manage" name="manageContext"></iframe>
+<div class="menu">
+    <table class="menuTable">
+
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">轮播图管理</a>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">用户管理</a>
+            </td>
+
+        </tr>
+
+        <tr class="moreManage">
+            <td>
+                <a href="bannerManage.html"  target="manageContext">商品管理+</a>
+                <div class="navigation">
+                    <a>品类管理</a>
+                    <a>商品管理</a>
+                </div>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">订单管理</a>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">配送费管理</a>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">系统消息</a>
+            </td>
+
+        </tr>
+
+        <tr class="moreManage">
+            <td>
+                <a href="bannerManage.html" target="manageContext">系统管理+</a>
+                <div class="navigation">
+                    <a>角色管理</a>
+                    <a>权限管理</a>
+                </div>
+            </td>
+
+        </tr>
+
+    </table>
+</div>
+<div class="topTip">轮播图表</div>
+<button id="addBanner">+新增轮播图</button>
+<div class="container bannerTable" >
+    <div class="row">
+        <div class="col-md-6 col-md-offset-8">
+            <button class="btn btn-success">添加</button>
+            <button class="btn btn-danger">删除</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <tr>
+                    <th style="background-color: #000027;color: white">序号</th>
+                    <th style="background-color: #000027;color: white">轮播图片</th>
+                    <th style="background-color: #000027;color: white">排序</th>
+                    <th style="background-color: #000027;color: white">新增日期</th>
+                    <th style="background-color: #000027;color: white">操作</th>
+                </tr>
+                    <tr th:each="emp:${pageInfo.list}">
+                        <td th:text="${emp.id}"></td>
+                        <td th:text="${emp.cover_img}"></td>
+                        <td th:text="${emp.sort}"></td>
+                        <td th:text="${emp.add_time}"></td>
+                        <td>
+                            <button class="btn btn-info  btn-sm">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                修改
+                            </button>
+                            <button class="btn btn-danger  btn-sm">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                删除
+                            </button>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class=".col-md-12 col-md-offset-8">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li><a href="/banner/manage?pn=1">首页</a></li>
+
+                        <li th:if="${pageInfo.hasPreviousPage}">
+                            <a th:href="@{'/banner/manage?pn='+${pageInfo.pageNum-1}}">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                            <li th:each="page_num:${pageInfo.pageNum}" th:class="${ pageInfo.pageNum == page_num}?'active':' '">
+                                <a href="#" th:text="${page_num}"></a>
+                            </li>
+
+                    <!--<c:if test="${pageInfo.pages != pageInfo.pageNum}">-->
+                        <li th:if="${pageInfo.hasNextPage}">
+                            <a th:href="@{'/banner/manage?pn='+${pageInfo.pageNum+1}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    <!--</c:if>-->
+                    <li><a th:href="@{'/banner/manage?pn='+${pageInfo.pages}}">尾页</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

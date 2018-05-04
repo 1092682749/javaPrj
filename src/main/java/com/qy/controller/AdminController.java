@@ -1,13 +1,19 @@
 package com.qy.controller;
+import com.github.pagehelper.PageInfo;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
 import com.qy.model.Admin;
+import com.qy.model.Banner;
 import com.qy.service.AdminService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import com.qy.service.BannerService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import javax.annotation.Resource;
 import javax.jws.WebParam;
@@ -20,10 +26,12 @@ import java.util.Map;
 */
 @RestController
 @RequestMapping("/admin")
-@SessionAttributes(names = {"admin"})
+@SessionAttributes(names = {"admin","user"})
 public class AdminController {
     @Resource
     private AdminService adminService;
+    @Resource
+    private BannerService bannerService;
 
     @PostMapping("/add")
     public Result add(@RequestBody Admin admin) {
@@ -64,17 +72,21 @@ public class AdminController {
 
     @RequestMapping("/verify")
     @ResponseBody
-    public Map<String,Object> verify(@RequestBody Admin admin, Model model){
+    public Map<String,Object> verify(@RequestBody Admin admin){
         Map<String,Object> returnMap = new HashMap<>();
         Map<String,Object> verifyMap= adminService.verify(admin);
         returnMap = verifyMap;
-        model.addAttribute("admin",verifyMap.get("object"));
         return returnMap;
     }
     @RequestMapping("index")
-    public ModelAndView index(@SessionAttribute("admin") Admin admin){
-        System.out.println(admin.getId());
-        ModelAndView mav = new ModelAndView("admin/index");
+    public ModelAndView index(@Param("id")Integer id,Model model){
+        Admin user = adminService.findById(id);
+//        model.addAttribute("user",user);
+//        System.out.println(user.getId());
+        ModelAndView mav = new ModelAndView();
+        model.addAttribute("user",user);
+//        mav.addObject("user",user);
+        mav.setViewName("redirect:/banner/manage");
         return mav;
     }
 }

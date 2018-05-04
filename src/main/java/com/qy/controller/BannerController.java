@@ -1,4 +1,5 @@
 package com.qy.controller;
+import com.github.pagehelper.PageInfo;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
 import com.qy.model.Admin;
@@ -53,10 +54,12 @@ public class BannerController {
         return ResultGenerator.successResult(page);
     }
     @RequestMapping("/manage")
-    public ModelAndView manage(@SessionAttribute Admin admin){
-        ModelAndView mav = new ModelAndView("admin/bannerManage");
+    public ModelAndView manage(@SessionAttribute Admin user,@RequestParam(value = "pn",defaultValue = "1")Integer pn){
+        ModelAndView mav = new ModelAndView("admin/index");
+        PageHelper.startPage(pn,5);
         List<Banner> bannerList = bannerService.findAll();
-        mav.addObject("bannerList",bannerList);
+        PageInfo pageInfo = new PageInfo(bannerList,5);
+        mav.addObject("pageInfo",pageInfo);
         return mav;
     }
 }

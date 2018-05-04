@@ -40,7 +40,7 @@ public class CodeGenerator {
     public static void main(String[] args) {
 //        genCode("address","admin","banner","category","evaluate","goods","member","order","order_goods","permissions","role"
 //                ,"role_permissions","shopping_cart","system_message","transaction","transport_cost");
-        genCode("index_banner");
+//        genCode("index_banner");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
 //        genCodeByCustomModelName("member","qy_member");
 
