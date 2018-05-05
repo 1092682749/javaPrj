@@ -9,4 +9,7 @@
     <result column="role_id" jdbcType="INTEGER" property="role_id" />
     <result column="permissions_id" jdbcType="INTEGER" property="permissions_id" />
   </resultMap>
+  <select id="findPermissionByRoleId" parameterType="int" resultType="com.qy.model.RolePermissions">
+    select *from role_permissions where role_id = #{id}
+  </select>
 </mapper>

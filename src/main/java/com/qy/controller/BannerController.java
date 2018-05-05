@@ -4,13 +4,21 @@ import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
 import com.qy.model.Admin;
 import com.qy.model.Banner;
+import com.qy.model.Permissions;
+import com.qy.model.RolePermissions;
 import com.qy.service.BannerService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import com.qy.service.PermissionsService;
+import com.qy.service.RolePermissionsService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -21,6 +29,10 @@ import java.util.List;
 public class BannerController {
     @Resource
     private BannerService bannerService;
+    @Resource
+    private PermissionsService permissionsService;
+    @Resource
+    private RolePermissionsService rolePermissionsService;
 
     @PostMapping("/add")
     public Result add(@RequestBody Banner banner) {
@@ -60,6 +72,27 @@ public class BannerController {
         List<Banner> bannerList = bannerService.findAll();
         PageInfo pageInfo = new PageInfo(bannerList,5);
         mav.addObject("pageInfo",pageInfo);
+        mav.addObject("user",user);
         return mav;
+    }
+    @RequestMapping("/permissionCheck")
+    public @ResponseBody boolean permissionCheck(@SessionAttribute Admin user,String operation){
+        List<RolePermissions> permissionsList = rolePermissionsService.findPermissionByRoleId(user.getId());
+        for (RolePermissions permissions : permissionsList){
+            if (permissions.getPermissions_id() == Integer.parseInt(operation)){
+                return true;
+            }
+        }
+        return false;
+    }
+    @RequestMapping("/to")
+    public ModelAndView to(){
+        return new ModelAndView("admin/testFile");
+    }
+    @RequestMapping("/upload")
+    public void upload(HttpServletRequest request){
+        MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
+        MultipartFile file = mhsr.getFile("pic");
+        System.out.println(file);
     }
 }
