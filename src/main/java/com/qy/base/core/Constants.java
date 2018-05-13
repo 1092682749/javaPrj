@@ -21,7 +21,7 @@ public final class Constants {
 
     //其他常量
     public static final String PATH_IMAGE_LISENCE = "src/main/resources/uploads/";
-    public static final String PATH_IMAGE_PATH = "src/main/resources/uploads/";
+    public static final String PATH_IMAGE_PATH = "../uploads/";
     public static final String PATH_IMAGE_PATH_DB = "uploads/";
     public static final String MYSQL_SQL = " {0} limit {1},{2}";
     /* ~~~~~~~~~~~~~~~~~~~~~返回数据状态 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

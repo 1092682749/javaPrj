@@ -17,7 +17,6 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 import com.qy.base.core.Constants;
 import com.qy.base.core.Result;
-import com.qy.base.core.ResultCode;
 import com.qy.base.core.ServiceException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -42,6 +41,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 @Configuration
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
+
+
 
     private final Logger logger = LoggerFactory.getLogger(WebMvcConfigurer.class);
     @Value("${spring.profiles.active}")
@@ -201,13 +202,13 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         if (ip != null && ip.indexOf(",") != -1) {
             ip = ip.substring(0, ip.indexOf(",")).trim();
         }
-
         return ip;
     }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/public/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/public/");
-        registry.addResourceHandler("/uploads/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/uploads/");
+        registry.addResourceHandler("/uploads/**").addResourceLocations(ResourceUtils.FILE_URL_PREFIX + Constants.PATH_IMAGE_PATH);
+        registry.addResourceHandler("/public/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/public/");//路径最后必须带/
+        registry.addResourceHandler("/resources/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/resources/");
         super.addResourceHandlers(registry);
     }
 }

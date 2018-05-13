@@ -19,4 +19,8 @@ public class IndexBannerServiceImpl extends AbstractService<IndexBanner> impleme
     @Resource
     private IndexBannerMapper indexBannerMapper;
 
+    @Override
+    public int addIndexBanner(IndexBanner banner) {
+        return indexBannerMapper.addIndexBanner(banner);
+    }
 }

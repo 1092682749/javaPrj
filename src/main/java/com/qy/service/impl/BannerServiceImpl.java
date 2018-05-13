@@ -24,4 +24,5 @@ public class BannerServiceImpl extends AbstractService<Banner> implements Banner
     public List<Banner> findBannersById(Integer id) {
         return bannerMapper.findBannersById(id);
     }
+
 }

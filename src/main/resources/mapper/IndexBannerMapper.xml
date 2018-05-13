@@ -16,4 +16,7 @@
   <select id="findMasterByGoodsId" resultType="com.qy.model.Banner" parameterType="int">
     SELECT *FROM banner WHERE goods_id = #{id} AND state = 0
   </select>
+  <insert id="addIndexBanner" parameterType="com.qy.model.IndexBanner">
+    insert into index_banner(i_src,type,goods_id,add_time,sort,state) values (#{i_src},#{type},#{goods_id},#{add_time},#{sort},#{state})
+  </insert>
 </mapper>

@@ -2,15 +2,15 @@ package com.qy.controller;
 import com.github.pagehelper.PageInfo;
 import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
-import com.qy.model.Admin;
-import com.qy.model.Banner;
-import com.qy.model.Permissions;
-import com.qy.model.RolePermissions;
+import com.qy.base.utils.UploadFile;
+import com.qy.model.*;
 import com.qy.service.BannerService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import com.qy.service.IndexBannerService;
 import com.qy.service.PermissionsService;
 import com.qy.service.RolePermissionsService;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -19,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,6 +36,8 @@ public class BannerController {
     private PermissionsService permissionsService;
     @Resource
     private RolePermissionsService rolePermissionsService;
+    @Resource
+    private IndexBannerService indexBannerService;
 
     @PostMapping("/add")
     public Result add(@RequestBody Banner banner) {
@@ -89,10 +94,25 @@ public class BannerController {
     public ModelAndView to(){
         return new ModelAndView("admin/testFile");
     }
-    @RequestMapping("/upload")
-    public void upload(HttpServletRequest request){
-        MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
-        MultipartFile file = mhsr.getFile("pic");
-        System.out.println(file);
+
+    @PostMapping(value = "/upload")
+    public Integer upload(String pic,
+                       @RequestParam(name = "goods_id",required = false)Integer goods_id,
+                       @RequestParam(name = "type",defaultValue = "0")Integer type,
+                       @RequestParam(name = "sort",defaultValue = "1")String sort,
+                       @RequestParam(defaultValue = "0",required = false) Integer state) throws IOException {
+       String url ="http://localhost:8080/" + UploadFile.uploadBase64(pic);
+       IndexBanner banner = new IndexBanner();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = new Date();
+        String dateStr = format.format(date);
+        banner.setAdd_time(dateStr);
+        banner.setI_src(url);
+        banner.setGoods_id(goods_id);
+        banner.setSort(sort);
+        banner.setState(state);
+        banner.setType(type);
+        Integer flag = indexBannerService.addIndexBanner(banner);
+        return flag;
     }
 }

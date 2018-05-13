@@ -1,0 +1,168 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .right-info{
+            position: absolute;
+            top: 50px;
+            left: 200px;
+            /*width: 70%;*/
+        }
+        .container{
+            padding: 0;
+            width: 100%;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../public/css/bannerManage.css" rel="stylesheet"/>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div class="menu">
+    <table class="menuTable">
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">轮播图管理</a>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">用户管理</a>
+            </td>
+
+        </tr>
+
+        <tr class="moreManage">
+            <td>
+                <a href="bannerManage.html"  target="manageContext">商品管理+</a>
+                <div class="navigation">
+                    <a>品类管理</a>
+                    <a>商品管理</a>
+                </div>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">订单管理</a>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">配送费管理</a>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <a href="bannerManage.html" target="manageContext">系统消息</a>
+            </td>
+
+        </tr>
+
+        <tr class="moreManage">
+            <td>
+                <a href="bannerManage.html" target="manageContext">系统管理+</a>
+                <div class="navigation">
+                    <a>角色管理</a>
+                    <a>权限管理</a>
+                </div>
+            </td>
+
+        </tr>
+
+    </table>
+</div>
+<div class="topTip">用户列表</div>
+    <div class="right-info">
+        <select id="selectMethod" name="selectMethod">
+            <option value="phone">绑定手机号</option>
+        </select>
+        <input id="selectContext" type="text"/>
+        <!--查询用户-->
+        <button id="selectMember" class="btn btn-info" type="button">查询</button>
+        <!--用户列表-->
+        <div class="container" >
+            <div class="row">
+                <div class="col-md-9">
+                    <table class="table table-hover">
+                        <tr>
+                            <th style="background-color: #000027;color: white">头像略缩图</th>
+                            <th style="background-color: #000027;color: white">绑定手机号</th>
+                            <th style="background-color: #000027;color: white">注册时间</th>
+                        </tr>
+                        <tr>
+                            <td>1231231</td>
+                            <td>12221222</td>
+                            <td>asdasdada</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row">-->
+                <!--<div class=".col-md-12 col-md-offset-7">-->
+                    <!--<nav aria-label="Page navigation">-->
+                        <!--<ul class="pagination">-->
+                            <!--<li><a href="/banner/manage?pn=1">首页</a></li>-->
+
+                            <!--<li th:if="${pageInfo.hasPreviousPage}">-->
+                                <!--<a th:href="@{'/banner/manage?pn='+${pageInfo.pageNum-1}}">-->
+                                    <!--<span aria-hidden="true">&laquo;</span>-->
+                                <!--</a>-->
+                            <!--</li>-->
+
+                            <!--<li th:each="page_num:${pageInfo.pageNum}" th:class="${ pageInfo.pageNum == page_num}?'active':' '">-->
+                                <!--<a href="#" th:text="${page_num}"></a>-->
+                            <!--</li>-->
+
+                            <!--&lt;!&ndash;<c:if test="${pageInfo.pages != pageInfo.pageNum}">&ndash;&gt;-->
+                            <!--<li th:if="${pageInfo.hasNextPage}">-->
+                                <!--<a th:href="@{'/banner/manage?pn='+${pageInfo.pageNum+1}}" aria-label="Next">-->
+                                    <!--<span aria-hidden="true">&raquo;</span>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                            <!--&lt;!&ndash;</c:if>&ndash;&gt;-->
+                            <!--<li><a th:href="@{'/banner/manage?pn='+${pageInfo.pages}}">尾页</a></li>-->
+                        <!--</ul>-->
+                    <!--</nav>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    var selectMember = document.getElementById('selectMember');
+    var selectContext = document.getElementById('selectContext');
+    var selectMethod = document.getElementById('selectMethod');
+    selectMember.onclick = function () {
+        var contextValue = selectContext.value;
+        var method = selectMethod.value;
+        if (method == "phone") {
+            $.ajax({
+               url:"/member/selectMemberByPhone",
+               type:"get",
+               data: {"phone":contextValue},
+               success:function (data) {
+                   alert("success!");
+               }
+            });
+        }
+    }
+</script>

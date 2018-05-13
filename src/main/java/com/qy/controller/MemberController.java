@@ -60,8 +60,17 @@ public class MemberController {
         return mav;
     }
     @RequestMapping("/manage")
-    public ModelAndView manage(@SessionAttribute Admin admin){
+    public ModelAndView manage(@SessionAttribute Admin user){
         ModelAndView mav = new ModelAndView("admin/bannerManage");
         return mav;
+    }
+    @RequestMapping("/toManage")
+    public ModelAndView toManage(){
+        ModelAndView mav = new ModelAndView("admin/memberManage");
+        return mav;
+    }
+    @RequestMapping("/selectMemberByPhone")
+    public String selectMemberByPhone(@RequestParam("phone")String phone){
+        return null;
     }
 }

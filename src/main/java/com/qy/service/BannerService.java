@@ -10,5 +10,4 @@ import java.util.List;
  */
 public interface BannerService extends Service<Banner> {
     public List<Banner> findBannersById(Integer id);
-
 }
