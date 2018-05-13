@@ -82,11 +82,20 @@
 }
 .bannerTable{
     position: absolute;
-    /*border: 1px solid black;*/
-    /*border-collapse: collapse;*/
     width: 80%;
     left: 200px;
     top: 120px;
+}
+#bannerTable{
+
+}
+#bannerTable td{
+    text-align: center;
+    vertical-align: middle;
+}
+#bannerTable img{
+    width: 200px;
+    object-fit: cover;
 }
 /*.bannerTable th{*/
 /*border: 1px solid #666666;*/
@@ -103,3 +112,24 @@
 /*width: 50%;*/
 /*object-fit: contain;*/
 /*}*/
+.addBannerBox{
+    padding-left: 50px;
+    position: absolute;
+    top: 50px;
+    left: 200px;
+    width: 80%;
+    height: 1000px;
+    background-color: white;
+}
+.inputBox input{
+    margin-left: 10px;
+}
+#sortInputBox{
+    display: none;
+    position: absolute;
+    top: 100px;
+}
+#uploadBnt{
+    position: absolute;
+    top: 150px;
+}

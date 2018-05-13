@@ -70,6 +70,14 @@ public class BannerController {
         page.setList(list);
         return ResultGenerator.successResult(page);
     }
+
+    //暂时不用此方法
+    @RequestMapping("/toManage")
+    public ModelAndView toManage(){
+        ModelAndView mav = new ModelAndView("admin/index");
+        return mav;
+    }
+
     @RequestMapping("/manage")
     public ModelAndView manage(@SessionAttribute Admin user,@RequestParam(value = "pn",defaultValue = "1")Integer pn){
         ModelAndView mav = new ModelAndView("admin/index");
