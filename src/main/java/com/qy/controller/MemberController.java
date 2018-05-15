@@ -67,10 +67,15 @@ public class MemberController {
     @RequestMapping("/toManage")
     public ModelAndView toManage(){
         ModelAndView mav = new ModelAndView("admin/memberManage");
+        List<Member> memberList = memberService.findAllOrderByTimeDesc();
+        mav.addObject("memberList",memberList);
         return mav;
     }
-    @RequestMapping("/selectMemberByPhone")
-    public String selectMemberByPhone(@RequestParam("phone")String phone){
-        return null;
+    @RequestMapping("/queryMemberByPhone")
+    public ModelAndView queryMemberByPhone(String phone){
+        ModelAndView mav = new ModelAndView("admin/memberManage");
+        List<Member> memberList = memberService.findMemberByPhone(phone);
+        mav.addObject("memberList",memberList);
+        return mav;
     }
 }

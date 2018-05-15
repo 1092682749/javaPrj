@@ -104,7 +104,8 @@ public class BannerController {
     }
 
     @PostMapping(value = "/upload")
-    public Integer upload(String pic,
+    public Integer upload(
+                       @RequestParam(name = "i_src") String pic,
                        @RequestParam(name = "goods_id",required = false)Integer goods_id,
                        @RequestParam(name = "type",defaultValue = "0")Integer type,
                        @RequestParam(name = "sort",defaultValue = "1")String sort,

@@ -6,6 +6,7 @@ import com.qy.service.CategoryService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -49,5 +50,12 @@ public class CategoryController {
         List<Category> list = categoryService.findAll();
         page.setList(list);
         return ResultGenerator.successResult(page);
+    }
+    @RequestMapping("/manage")
+    public ModelAndView manage(){
+        ModelAndView mav = new ModelAndView("admin/categoryManage");
+        List<Category> categoryList = categoryService.findAll();
+        mav.addObject("categoryList",categoryList);
+        return mav;
     }
 }

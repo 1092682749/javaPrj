@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -22,5 +23,15 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
     @Override
     public Member findMemberById(Integer id) {
         return memberMapper.findMemberById(id);
+    }
+
+    @Override
+    public List<Member> findAllOrderByTimeDesc() {
+        return memberMapper.findAllOrderByTimeDesc();
+    }
+
+    @Override
+    public List<Member> findMemberByPhone(String phone) {
+        return memberMapper.findMemberByPhone(phone);
     }
 }

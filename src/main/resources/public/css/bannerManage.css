@@ -3,6 +3,7 @@
     padding: 0;
 }
 .menu{
+    z-index: 1;
     display: inline-block;
     position: relative;
     width: 150px;
@@ -33,7 +34,7 @@
     right: 0;
     margin: auto;
 }
-.moreManage{
+.moreManageBox{
     position: relative;
 }
 .navigation{
@@ -44,7 +45,7 @@
     right: -100px;
     top: 0px;
 }
-.moreManage:hover .navigation{
+.moreManageBox:hover .navigation{
     display: block;
 }
 .navigation a:hover{
@@ -113,6 +114,7 @@
 /*object-fit: contain;*/
 /*}*/
 .addBannerBox{
+    display: none;
     padding-left: 50px;
     position: absolute;
     top: 50px;
@@ -125,11 +127,124 @@
     margin-left: 10px;
 }
 #sortInputBox{
-    display: none;
+    /*display: none;*/
     position: absolute;
     top: 100px;
 }
 #uploadBnt{
     position: absolute;
     top: 150px;
+    background-color: rgba(22,155,213,0.6);
+    outline: none;
+    border: none;
+    height: 35px;
+}
+.cropperBox{
+    width: 500px;
+    height: 300px;
+    /*overflow: auto;*/
+}
+.cropperBox img{
+    width: 100%;
+    height: 300px;
+    /*object-fit: cover;*/
+    /*height: 100%;*/
+}
+.cutBox{
+    display: none;
+    background-color: #f2f2f2;
+    width: 60%;
+    height: 1000px;
+    position: absolute;
+    top: 50px;
+    left: 200px;
+}
+.cutTitleBox{
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    background-color: #a7a7a7;
+}
+.cutTitleBox img{
+    position: absolute;
+    width: 15px;
+    object-fit: cover;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.cropperBox{
+    width: 70%;
+    background-color: #38b16d;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.bottomComponent{
+    position: absolute;
+    top: 400px;
+    width: 70%;
+    height: 300px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.bottomComponent p{
+    /*background-color: #1988cb;*/
+    height: 20px;
+}
+.bottomComponent img{
+    width: 250px;
+    height: 150px;
+}
+.bottomComponent button{
+    width: 95px;
+    margin-left: 20px;
+}
+#sureBnt{
+    color: white;
+}
+#endPic{
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    top: 200px;
+    display: none;
+}
+.cancelSubmitBntBox{
+    position: absolute;
+    top: 500px;
+}
+.headerPic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.addCategory{
+    display: none;
+    position: absolute;
+    left: 200px;
+    top: 0;
+    width: 70%;
+    background-color: white;
+    height: 1000px;
+}
+.addTop{
+    width: 70%;
+    height: 35px;
+    background-color: #000027;
+    color: white;
+    line-height: 35px;
+    margin-bottom:50px;
+}
+.addCategory table{
+    text-align: center;
+    border-collapse:separate;
+    border-spacing:10px 20px;
+}
+.addCategory input{
+    width: 350px;
 }

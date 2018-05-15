@@ -17,4 +17,10 @@
   <!--<select id="findMemberById" parameterType="int" resultType="com.qy.model.Member">-->
     <!--SELECT *FROM member WHERE id = #{id}-->
   <!--</select>-->
+  <select id="findAllOrderByTimeDesc" resultType="com.qy.model.Member">
+    select *from member order by add_time desc
+  </select>
+  <select id="findMemberByPhone" parameterType="string" resultType="com.qy.model.Member">
+    select *from member where phone like concat('%',#{phone},'%')
+  </select>
 </mapper>

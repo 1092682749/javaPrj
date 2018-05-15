@@ -13,7 +13,7 @@
 <div class="swiper-container">
 	<div class="swiper-wrapper">
 		<div class="swiper-slide" th:each="i:${indexBannerStringMap}">
-			<a th:href="${i.getValue()}">
+			<a target="_top" th:href="${i.getValue()}">
 				<img th:src="${i.getKey().getI_src()}"/>
 			</a>
 		</div>

@@ -16,6 +16,10 @@
             position: absolute;
             left: 0;
         }
+        .table{
+            text-align: center;
+            vertical-align: middle;
+        }
     </style>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../../public/css/bannerManage.css" rel="stylesheet"/>
@@ -41,13 +45,14 @@
 
         <tr class="moreManage">
             <td>
-                <a href="bannerManage.html"  target="manageContext">商品管理+</a>
-                <div class="navigation">
-                    <a>品类管理</a>
-                    <a>商品管理</a>
+                <div class="moreManageBox">
+                    <a href="bannerManage.html"  target="manageContext">商品管理+</a>
+                    <div class="navigation">
+                        <a href="/category/manage">品类管理</a>
+                        <a>商品管理</a>
+                    </div>
                 </div>
             </td>
-
         </tr>
 
         <tr>
@@ -73,39 +78,44 @@
 
         <tr class="moreManage">
             <td>
-                <a href="bannerManage.html" target="manageContext">系统管理+</a>
-                <div class="navigation">
-                    <a>角色管理</a>
-                    <a>权限管理</a>
+                <div class="moreManageBox">
+                    <a href="bannerManage.html" target="manageContext">系统管理+</a>
+                    <div class="navigation">
+                        <a>角色管理</a>
+                        <a>权限管理</a>
+                    </div>
                 </div>
             </td>
-
         </tr>
 
     </table>
 </div>
 <div class="topTip">用户列表</div>
     <div class="right-info">
-        <select id="selectMethod" name="selectMethod">
-            <option value="phone">绑定手机号</option>
-        </select>
-        <input id="selectContext" type="text"/>
-        <!--查询用户-->
-        <button id="selectMember" class="btn btn-info" type="button">查询</button>
+        <form action="/member/queryMemberByPhone">
+            <select id="selectMethod" name="selectMethod">
+                <option value="phone">绑定手机号</option>
+            </select>
+            <input id="selectContext" name="phone" type="text"/>
+            <!--查询用户-->
+            <button id="selectMember" class="btn btn-info" type="submit">查询</button>
+        </form>
         <!--用户列表-->
         <div class="container" >
             <div class="row">
                 <div class="col-md-9">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-bordered">
                         <tr>
                             <th style="background-color: #000027;color: white">头像略缩图</th>
                             <th style="background-color: #000027;color: white">绑定手机号</th>
                             <th style="background-color: #000027;color: white">注册时间</th>
                         </tr>
-                        <tr>
-                            <td>1231231</td>
-                            <td>12221222</td>
-                            <td>asdasdada</td>
+                        <tr th:each="member:${memberList}">
+                            <td>
+                                <img class="headerPic" th:src="${member.getHeader_img()}">
+                            </td>
+                            <td th:text="${member.getPhone()}">12221222</td>
+                            <td th:text="${member.getAdd_time()}">asdasdada</td>
                         </tr>
                     </table>
                 </div>
