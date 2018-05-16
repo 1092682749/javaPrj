@@ -1,0 +1,132 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .table{
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../public/css/bannerManage.css" rel="stylesheet"/>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div class="editGoods">
+    <div class="addTop">编辑商品</div>
+
+        <table>
+            <form method="post" action="/goods/update">
+            <tr>
+                <td>
+                    ＊商品图片：
+                </td>
+                <td>
+                    <input name="goods_img" type="file" id="addGoodsImgInput" style="display: none">
+                    <img th:src="${goods.getGoods_img()}" onclick="selectPic()" class="addGoodsImg">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *排序
+                </td>
+                <td>
+                    <input name="g_sort" th:value="${goods.getG_sort()}" type="number"/><br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *所属品类：
+                </td>
+                <td>
+                    <select name="category_id">
+                        <option th:each="category:${categoryMap}" th:value="${category.getKey()}" th:text="${category.getValue().getC_name()}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *商品名称：
+                </td>
+                <td>
+                    <input name="goods_name" th:value="${goods.getGoods_name()}" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *商品单价：
+                </td>
+                <td>
+                    <input name="goods_price" th:value="${goods.getGoods_price()}" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    直降金额：
+                </td>
+                <td>
+                    <input name="goods_reduce" th:value="${goods.getGoods_reduce()}" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *最低销售重量：
+                </td>
+                <td>
+                    <input name="min_sale_weight" th:value="${goods.getMin_sale_weight()}" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *库存：
+                </td>
+                <td>
+                    <input name="stock_num" th:value="${goods.getStock_num()}" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *商品描述：
+                </td>
+                <td>
+                    <input name="detail" th:value="${goods.getDetail()}" type="text"/>
+                </td>
+            </tr>
+            <input type="hidden" name="g_state" th:value="${goods.getG_state()}">
+            <input type="hidden" name="goods_unit" th:value="${goods.getGoods_unit()}">
+            </form>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-info" style="width: 100px;margin-right: 10px">保存</button>
+                    <a href="/goods/manage">
+                        <button onclick="back()" class="btn btn-info" style="border: 1px;width: 100px;">返回</button>
+                    </a>
+
+                </td>
+            </tr>
+        </table>
+</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    var addGoodsImgInput = document.getElementById('addGoodsImgInput');
+    var addGoodsImg = document.getElementsByClassName('addGoodsImg')[0];
+    function selectPic() {
+        console.log(1);
+        addGoodsImgInput.click();
+    }
+    addGoodsImgInput.onchange = function () {
+        var imageFile = addGoodsImgInput.files[0];
+        var read = new FileReader();
+        read.readAsDataURL(imageFile);
+        read.onload = function (e) {
+            addGoodsImg.setAttribute("src",read.result);
+        }
+    }
+</script>

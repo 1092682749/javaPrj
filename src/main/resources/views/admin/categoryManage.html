@@ -92,8 +92,8 @@
 </div>
 <div class="topTip">品类列表</div>
 <div class="right-info">
-    <!--<form>-->
         <button class="btn btn-info" onclick="displayAdd()">+新增品类</button>
+    <form id="queryForm" style="display: inline-block">
         <select style="margin-left: 20px" id="selectMethod" name="selectMethod">
             <option value="phone">品类名称</option>
         </select>
@@ -105,7 +105,7 @@
         </select>
         <!--查询用户-->
         <button id="selectMember" class="btn btn-info" type="submit">查询</button>
-    <!--</form>-->
+    </form>
     <!--用户列表-->
     <div class="container" >
         <div class="row">
@@ -123,12 +123,13 @@
                         <td th:text="${category.getC_name()}">12221222</td>
                         <td th:text="${category.getC_state()}">12221222</td>
                         <td th:text="${category.getC_add_time()}">12221222</td>
+                        <td th:if="${category.getC_state()} == 0">
+                            <a>上架</a>
+                            <a>删除</a>
+                            <a>编辑</a>
+                        </td>
                         <td th:if="${category.getC_state()} == 1">
                             <a>下架</a>
-                            <a>删除</a>
-                        </td>
-                        <td th:if="${category.getC_state()} == 2">
-                            <a>上架</a>
                         </td>
                     </tr>
                 </table>
@@ -139,39 +140,43 @@
 
 <div class="addCategory">
     <div class="addTop">新增品类</div>
-    <table>
-        <tr>
-            <td>
-                ＊排序：
-            </td>
-            <td>
-                <input type="number"/><br/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                *品类名称：
-            </td>
-            <td>
-                <input type="text"/><br/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                *品类描述：
-            </td>
-            <td>
-                <input type="text"/>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <button class="btn btn-info" style="width: 100px;margin-right: 10px">保存</button>
-                <button class="btn btn-info" style="border: 1px;width: 100px;" onclick="closeAdd()">返回</button>
-            </td>
-        </tr>
-    </table>
+    <form method="post" action="/category/add">
+        <table>
+            <tr>
+                <td>
+                    ＊排序：
+                </td>
+                <td>
+                    <input name="sort" type="number"/><br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *品类名称：
+                </td>
+                <td>
+                    <input name="c_name" type="text"/><br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *品类描述：
+                </td>
+                <td>
+                    <input name="c_descripe" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-info" style="width: 100px;margin-right: 10px">保存</button>
+                    <button type="reset" class="btn btn-info" style="border: 1px;width: 100px;" onclick="closeAdd()">返回</button>
+                </td>
+            </tr>
+        </table>
+        <!--默认未上架-->
+        <input type="hidden" name="c_state" value="0">
+    </form>
 </div>
 
 

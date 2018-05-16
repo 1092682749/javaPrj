@@ -27,4 +27,7 @@
   <select id="findGoodsById" resultType="com.qy.model.Goods" parameterType="int">
     SELECT *FROM goods WHERE id = #{id}
   </select>
+  <select id="findGoodsByLikeQuery" resultType="com.qy.model.Goods">
+    select *from (select *from goods as g where g.category_id = #{id} AND g.g_state = #{isPut}) as gg where gg.goods_name like concat('%',#{goodsName},'%')
+  </select>
 </mapper>

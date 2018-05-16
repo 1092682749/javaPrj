@@ -228,7 +228,7 @@
     position: absolute;
     left: 200px;
     top: 0;
-    width: 70%;
+    width: 80%;
     background-color: white;
     height: 1000px;
 }
@@ -246,5 +246,31 @@
     border-spacing:10px 20px;
 }
 .addCategory input{
+    width: 350px;
+}
+.addCategory select{
+    width: 350px;
+}
+.editGoods{
+    position: absolute;
+    left: 50px;
+    top: 0;
+    width: 70%;
+    background-color: white;
+    height: 1000px;
+}
+.addGoodsImg{
+    width: 300px;
+    object-fit: cover;
+}
+.editGoods table{
+    text-align: center;
+    border-collapse:separate;
+    border-spacing:10px 20px;
+}
+.editGoods input{
+    width: 350px;
+}
+.editGoods select{
     width: 350px;
 }

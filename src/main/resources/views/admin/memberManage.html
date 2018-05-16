@@ -92,7 +92,7 @@
 </div>
 <div class="topTip">用户列表</div>
     <div class="right-info">
-        <form action="/member/queryMemberByPhone">
+        <form id="queryForm">
             <select id="selectMethod" name="selectMethod">
                 <option value="phone">绑定手机号</option>
             </select>
@@ -150,9 +150,6 @@
             <!--</div>-->
         </div>
     </div>
-
-
-
 </body>
 </html>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -161,18 +158,14 @@
     var selectMember = document.getElementById('selectMember');
     var selectContext = document.getElementById('selectContext');
     var selectMethod = document.getElementById('selectMethod');
+    var queryForm = document.getElementById('queryForm');
     selectMember.onclick = function () {
         var contextValue = selectContext.value;
         var method = selectMethod.value;
+        //增加其他查询方法
         if (method == "phone") {
-            $.ajax({
-               url:"/member/selectMemberByPhone",
-               type:"get",
-               data: {"phone":contextValue},
-               success:function (data) {
-                   alert("success!");
-               }
-            });
+            queryForm.setAttribute("action","/member/queryMemberByPhone");
+            queryForm.submit();
         }
     }
 </script>

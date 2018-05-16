@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -22,5 +23,10 @@ public class GoodsServiceImpl extends AbstractService<Goods> implements GoodsSer
     @Override
     public Goods findGoodsById(Integer id) {
         return goodsMapper.findGoodsById(id);
+    }
+
+    @Override
+    public List<Goods> findGoodsByLikeQuery(String id, String isPut, String goodsName) {
+        return goodsMapper.findGoodsByLikeQuery(id,isPut,goodsName);
     }
 }

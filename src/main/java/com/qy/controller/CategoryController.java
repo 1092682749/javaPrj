@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,9 +23,16 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping("/add")
-    public Result add(@RequestBody Category category) {
+    public ModelAndView add(Category category) {
+        Date data = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String dataStr = format.format(data);
+        category.setC_add_time(dataStr);
         categoryService.save(category);
-        return ResultGenerator.successResult();
+        ModelAndView mav = new ModelAndView("admin/categoryManage");
+        List<Category> categoryList = categoryService.findAll();
+        mav.addObject("categoryList",categoryList);
+        return mav;
     }
 
     @PostMapping("/delete")
