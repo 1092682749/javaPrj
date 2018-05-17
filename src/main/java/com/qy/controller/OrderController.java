@@ -82,6 +82,11 @@ public class OrderController {
         Member member = memberService.findMemberById(shoppingCartService.findById(integers.get(0)).getS_member_id());
         Address address = addressService.findDefaultAddress(member.getId());
         TransportCost transportCost = transportCostService.findCost(address);
+        //如果没有该地址的运费信息则运费为30
+        if (transportCost == null){
+            transportCost = new TransportCost();
+            transportCost.setPrice(new BigDecimal(30));
+        }
         Map<ShoppingCart,Goods> shoppingCartGoodsMap = shoppingCartService.findAllShoppingCartByIds(integers);
         for (Map.Entry<ShoppingCart,Goods> entry: shoppingCartGoodsMap.entrySet()){
             Double num = entry.getKey().getGoods_num().doubleValue();
