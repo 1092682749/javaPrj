@@ -128,7 +128,7 @@ public class GoodsController {
     @RequestMapping("/manage")
     public ModelAndView manage(@SessionAttribute Admin user,@RequestParam(name = "pn",defaultValue = "1")Integer pn){
         ModelAndView mav = new ModelAndView("admin/goodsManage");
-        PageHelper.startPage(pn,5);
+        PageHelper.startPage(pn,6);
         List<Goods> goodsList = goodsService.findAll();
         PageInfo pageInfo = new PageInfo(goodsList,5);
         Map<Integer,Category> categoryMap = categoryService.categoryMap();

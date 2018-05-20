@@ -55,7 +55,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/list")
-    public ModelAndView list(@SessionAttribute Member member) {
+    public ModelAndView list(@SessionAttribute(name = "member") Member member) {
         ModelAndView mav = new ModelAndView("cart");
         Map<ShoppingCart,Goods> shoppingCartGoodsMap = shoppingCartService.findAllShoppingCartByMemberId(member.getId());
         mav.addObject("shoppingCartGoodsMap",shoppingCartGoodsMap);

@@ -39,7 +39,7 @@ public class IndexBanner {
     /**
      * 1上架，0未上架
      */
-    private Integer state;
+    private Integer state = new Integer(0);
 
     /**
      * 获取首页轮播id

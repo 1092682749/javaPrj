@@ -93,7 +93,7 @@
                     <tr th:each="emp:${pageInfo.list}">
                         <td th:text="${emp.id}"></td>
                         <td>
-                            <img class="prePic" th:src="${emp.cover_img}">
+                            <img class="prePic" th:src="${emp.i_src}">
                         </td>
                         <td th:text="${emp.sort}"></td>
                         <td th:text="${emp.add_time}"></td>
@@ -148,8 +148,8 @@
         *类型:
         <input id="goods_name" type="radio" name="goodsOrActive" value="goods_name" selected> *商品名称
         <input id="ad" type="radio" name="goodsOrActive" value="ad"> *活动/广告<br/>
-        <select id="goodsNameList">
-            <option value="2">2</option>
+        <select id="goodsNameList" th:each="goods:${goodsList}">
+            <option th:value="${goods.getId()}" th:text="${goods.getId()}"></option>
         </select>
     </div>
     <div id="sortInputBox">
@@ -172,7 +172,9 @@
     </div>
     <div class="bottomComponent">
         <p>预览框</p>
-        <img id="preView" src="">
+        <div class="small">
+            <img>
+        </div>
         <input type="file" id="fileInput" style="display: none">
         <button onclick="openFile()" class="btn btn-info">上传图片</button>
         <button id="sureBnt" class="btn" style="background-color: gray">确定</button>
@@ -232,10 +234,10 @@
         fileInput.click();
     }
     fileInput.onchange = function (ev) {
-        console.log(fileCount);
+        // console.log(fileCount);
         var file = fileInput.files[0];
         fileCount++;
-        console.log(fileInput.files);
+        // console.log(fileInput.files);
         var read = new FileReader();
         read.readAsDataURL(file);
         read.onload = function (e) {
@@ -246,11 +248,9 @@
                 cropper  = new Cropper(image,{
                     aspectRatio: 16 / 9,
                     viewMode:3,
+                    preview:".small",
                     crop:function (event) {
-
                         res = cropper.getCroppedCanvas();
-                        resUrl = res.toDataURL("image/png");
-                        preView.setAttribute("src",resUrl);
                     }
                 });
             } else {
@@ -271,6 +271,7 @@
 
     //提交图片
     submitBnt.onclick = function (){
+        // preView.setAttribute("src",resUrl);
         if (resUrl == null){
             alert("还没有选择文件");
         } else {
@@ -284,14 +285,20 @@
                     type = 1;
                     goodsName = goodsNameList.value;
                 }
-                console.log("ajax");
+                // console.log("ajax");
+                var bannerObject ={"i_src":resUrl,"type":type,"goods_id":goodsName,"sort":sortinput.value};
+                var banner = JSON.stringify(bannerObject);
                 $.ajax({
                     url:"/banner/upload",
-                    data:{"i_src":resUrl,"type":type,"goods_id":goodsName,"sort":sortinput.value},
+                    // data:{"banner":JSON.stringify(bannerObject)},
+                    data:banner,
                     type:"post",
-                    traditional: true,
+                    // traditional: true,
+                    contentType:'application/json',
+                    dataType:"JSON",
                     success:function (data) {
                         if (data != 0){
+                            // console.log(JSON.stringify(bannerObject));
                             alert("上传成功！");
                         }
                     }
@@ -301,6 +308,8 @@
     };
     //确定裁剪
     sureBnt.onclick = function () {
+        resUrl = res.toDataURL("image/png");
+        // console.log("resUrl is:"+resUrl);
         if (resUrl == null){
             alert("还没有选择文件");
         } else {

@@ -4,12 +4,9 @@ import com.qy.base.core.Result;
 import com.qy.base.core.ResultGenerator;
 import com.qy.base.utils.UploadFile;
 import com.qy.model.*;
-import com.qy.service.BannerService;
+import com.qy.service.*;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
-import com.qy.service.IndexBannerService;
-import com.qy.service.PermissionsService;
-import com.qy.service.RolePermissionsService;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,6 +35,8 @@ public class BannerController {
     private RolePermissionsService rolePermissionsService;
     @Resource
     private IndexBannerService indexBannerService;
+    @Resource
+    private GoodsService goodsService;
 
     @PostMapping("/add")
     public Result add(@RequestBody Banner banner) {
@@ -82,10 +81,13 @@ public class BannerController {
     public ModelAndView manage(@SessionAttribute Admin user,@RequestParam(value = "pn",defaultValue = "1")Integer pn){
         ModelAndView mav = new ModelAndView("admin/index");
         PageHelper.startPage(pn,5);
-        List<Banner> bannerList = bannerService.findAll();
+        List<IndexBanner> bannerList = indexBannerService.findAll();
         PageInfo pageInfo = new PageInfo(bannerList,5);
+
         mav.addObject("pageInfo",pageInfo);
         mav.addObject("user",user);
+        List<Goods> goodsList = goodsService.findAll();
+        mav.addObject("goodsList",goodsList);
         return mav;
     }
     @RequestMapping("/permissionCheck")
@@ -103,8 +105,8 @@ public class BannerController {
         return new ModelAndView("admin/testFile");
     }
 
-    @PostMapping(value = "/upload")
-    public Integer upload(
+    @PostMapping(value = "/uploads")
+    public Integer uploads(
                        @RequestParam(name = "i_src") String pic,
                        @RequestParam(name = "goods_id",required = false)Integer goods_id,
                        @RequestParam(name = "type",defaultValue = "0")Integer type,
@@ -121,6 +123,17 @@ public class BannerController {
         banner.setSort(sort);
         banner.setState(state);
         banner.setType(type);
+        Integer flag = indexBannerService.addIndexBanner(banner);
+        return flag;
+    }
+    @PostMapping(value = "/upload")
+    public Integer upload(@RequestBody IndexBanner banner) throws IOException {
+        String url ="http://localhost:8080/" + UploadFile.uploadBase64(banner.getI_src());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = new Date();
+        String dateStr = format.format(date);
+        banner.setAdd_time(dateStr);
+        banner.setI_src(url);
         Integer flag = indexBannerService.addIndexBanner(banner);
         return flag;
     }
