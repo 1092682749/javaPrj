@@ -148,8 +148,8 @@
         *类型:
         <input id="goods_name" type="radio" name="goodsOrActive" value="goods_name" selected> *商品名称
         <input id="ad" type="radio" name="goodsOrActive" value="ad"> *活动/广告<br/>
-        <select id="goodsNameList" th:each="goods:${goodsList}">
-            <option th:value="${goods.getId()}" th:text="${goods.getId()}"></option>
+        <select id="goodsNameList">
+            <option  th:each="goods:${goodsList}" th:value="${goods.getId()}" th:text="${goods.getId()}"></option>
         </select>
     </div>
     <div id="sortInputBox">
