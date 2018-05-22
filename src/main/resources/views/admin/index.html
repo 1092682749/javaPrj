@@ -99,11 +99,11 @@
                         <td th:text="${emp.add_time}"></td>
                         <td>
                             <!--角色只有一个-->
-                            <button th:onclick="'checkPermission('+${user.getRole_id()}+')'" class="btn btn-info  btn-sm">
+                            <button th:onclick="'checkPermission('+${user.getRole_id()}+','+${emp.id}+')'" class="btn btn-info  btn-sm">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                 修改
                             </button>
-                            <button th:onclick="'checkPermission('+${user.getRole_id()}+')'" class="btn btn-danger  btn-sm">
+                            <button th:onclick="'checkPermission('+${user.getRole_id()}+','+${emp.id}+')'" class="btn btn-danger  btn-sm">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 删除
                             </button>
@@ -319,15 +319,17 @@
         }
     };
     //权限验证
-    function checkPermission(operation) {
+    function checkPermission(operation,goods_id) {
+        console.log(goods_id);
         $.ajax({
             url:"/banner/permissionCheck",
-            data:{operation:operation},
+            data:{operation:operation,id:goods_id},
             type:"GET",
             success:function (data) {
                 if (data == false)
                 {
                     alert("你无权修改此信息");
+                    this.parentNode.removeChild(this);
                 }else {
                     alert("修改成功");
                 }

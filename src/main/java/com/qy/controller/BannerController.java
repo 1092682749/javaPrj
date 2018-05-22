@@ -7,6 +7,7 @@ import com.qy.model.*;
 import com.qy.service.*;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -91,10 +92,11 @@ public class BannerController {
         return mav;
     }
     @RequestMapping("/permissionCheck")
-    public @ResponseBody boolean permissionCheck(@SessionAttribute Admin user,String operation){
+    public @ResponseBody boolean permissionCheck(@SessionAttribute Admin user, String operation, Integer id){
         List<RolePermissions> permissionsList = rolePermissionsService.findPermissionByRoleId(user.getId());
         for (RolePermissions permissions : permissionsList){
             if (permissions.getPermissions_id() == Integer.parseInt(operation)){
+                indexBannerService.deleteById(id);
                 return true;
             }
         }
