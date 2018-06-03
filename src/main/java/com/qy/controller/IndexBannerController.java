@@ -6,6 +6,7 @@ import com.qy.service.IndexBannerService;
 import com.qy.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -50,4 +51,10 @@ public class IndexBannerController {
         page.setList(list);
         return ResultGenerator.successResult(page);
     }
+//    @GetMapping("/deleteIndexBanner")
+//    public @ResponseBody boolean deleteIndexBanner(Integer id){
+//        indexBannerService.deleteById(id);
+//        ModelAndView mav = new ModelAndView("redirect:/banner/manage");
+//        return mav;
+//    }
 }
