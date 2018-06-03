@@ -112,7 +112,7 @@
             </table>
         </div>
     </div>
-    <div class="row">
+    <div id="pageRow" class="row">
         <div class=".col-md-12 col-md-offset-8">
             <nav aria-label="Page navigation">
                 <ul class="pagination">
@@ -202,6 +202,7 @@
     var uploadBnt = document.getElementById('uploadBnt');
     var endPic = document.getElementById('endPic');
     var addBannerBnt = document.getElementById('addBanner');
+    var pageRow = document.getElementById('pageRow');
     // var goodsNameList = document.getElementById('goodsNameList');
     var goodsNameList = document.getElementById('goodsNameList');
     console.log(cropperBoxImg);
@@ -222,6 +223,7 @@
     };
     addBannerBnt.onclick = function(){
         addBannerBox.style.display = "block";
+        pageRow.style.display = "none";
     };
     adInput.onchange = function (e) {
         if (adInput.checked == true){
@@ -267,6 +269,7 @@
     //取消提交
     cancelSubmitBnt.onclick = function (){
       addBannerBox.style.display = "none";
+        pageRow.style.display = "block";
     };
 
     //提交图片
