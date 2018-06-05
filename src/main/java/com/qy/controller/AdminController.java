@@ -79,7 +79,7 @@ public class AdminController {
         return returnMap;
     }
     @RequestMapping("index")
-    public ModelAndView index(@Param("id")Integer id,Model model){
+    public ModelAndView index(@Param("id")Integer id,@RequestParam(value = "password",required = true)String password,Model model){
         Admin user = adminService.findById(id);
 //        model.addAttribute("user",user);
 //        System.out.println(user.getId());
