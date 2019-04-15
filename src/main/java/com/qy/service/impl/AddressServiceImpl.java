@@ -22,6 +22,7 @@ public class AddressServiceImpl extends AbstractService<Address> implements Addr
 
     @Override
     public Address findDefaultAddress(Integer id) {
+
         return addressMapper.findDefaultAddress(id);
     }
 
